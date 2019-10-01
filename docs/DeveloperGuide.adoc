@@ -303,6 +303,16 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |add templates of grocery items |to keep track of what I want to have in my fridge
+
+|`* * *` |user |edit templates of grocery items |edit items and volumes based on my current needs and preferences
+
+|`* * *` |user |delete templates |maintain a short list of templates I regularly use
+
+|`* * *` |user |add multiple templates |use different templates depending on the occasion
+
+|`* * *` |user |generate a shopping list using my templates |save time on checking what is missing from my fridge
+
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
