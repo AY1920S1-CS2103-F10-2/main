@@ -779,6 +779,36 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get reminders on expiring food items</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prevent food wastage</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set default reminder settings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get reminders of expiring food within the specified number of days every time I launch the app</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort food items</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view grocery list with the specified sorting method</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set default sort settings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view grocery list with the specified sorting method every time I display the grocery list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">merge food items with same name and expiry date when viewing grocery list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view grocery list in a more organized manner</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -894,14 +924,67 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </li>
 <li>
 <p>Use case resumes at step 2.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-removing-a-tag-2" class="discrete">Use case: Removing a tag</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list all food items</p>
+</li>
+<li>
+<p>iFridge shows a list of food items</p>
+</li>
+<li>
+<p>User requests to use a certain amount of a specific food item</p>
+</li>
+<li>
+<p>iFridge reduces the amount of the specific food item</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3a. The given amount is more than the amount of food registered in the list.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>3a1. iFridge shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b. The given amount is exactly the same as amount of food registered in the list.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. iFridge removes the food item from the list.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
+<li>
+<p>3a1. iFridge shows an error message.</p>
+</li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+</li>
+</ol>
 </div>
 <h3 id="use-case-delete-grocery-item" class="discrete">Use case: Delete grocery item</h3>
 <div class="paragraph">
@@ -951,9 +1034,6 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -1167,4 +1247,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-03 15:42:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-03 15:51:23 UTC</div></div></div></body></html>
