@@ -686,25 +686,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">delete a person</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove entries that I no longer need</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">find a person by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of persons without having to go through the entire list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add templates of grocery items</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add <a href="#template">templates</a> of grocery items</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">to keep track of what I want to have in my fridge</p></td>
 </tr>
 <tr>
@@ -732,16 +714,28 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <td class="tableblock halign-left valign-top"><p class="tableblock">save time on checking what is missing from my fridge</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing them by accident</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">environmentally-conscious user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">compare my <a href="#food-waste">food wastage statistics</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">better manage my food waste</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">environmentally-conscious user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get feedback on how I am performing on my food waste management</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">improve my food waste management</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">environmentally-conscious user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see which kinds of food I most commonly waste</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cut down on unnecessary food waste</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">forgetful user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see a list of my expired food items</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">retrieve and dispose of them</p></td>
 </tr>
 </tbody>
 </table>
@@ -751,7 +745,69 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>iFridge</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>iFridge</code> application and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+</div>
+<h3 id="use-case-removing-a-tag" class="discrete">Use case: Removing a tag</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list all food items</p>
+</li>
+<li>
+<p>iFridge shows a list of food items</p>
+</li>
+<li>
+<p>User requests to remove a tag from a specific food item in the list</p>
+</li>
+<li>
+<p>iFridge removes the tag</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. iFridge shows an error message.</p>
+</li>
+<li>
+<p>Use case resumes at step 2.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b. The tag specified is non-existent.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. iFridge shows an error message.</p>
+</li>
+<li>
+<p>Use case resumes at step 2.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <h3 id="use-case-delete-grocery-item" class="discrete">Use case: Delete grocery item</h3>
 <div class="paragraph">
@@ -850,20 +906,22 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Grocery</strong>: Food items found in the fridge.
-<strong>Waste</strong>: Groceries that have expired and have not been fully consumed.
-<strong>Template</strong>: A list of food items that the user regularly wants to keep in their fridge.
-<strong>Shopping</strong>: Grocery items to be bought.</p>
+<p><a id="grocery"></a> Grocery: Food items found in the fridge.</p>
+</div>
+<div class="paragraph">
+<p><a id="food-waste"></a> Food Waste: Groceries that have expired and have not been fully consumed.</p>
+</div>
+<div class="paragraph">
+<p><a id="template"></a> Template: A list of food items that the user regularly wants to keep in their fridge.</p>
+</div>
+<div class="paragraph">
+<p><a id="shopping"></a> Shopping: Grocery items to be bought.</p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
 <dd>
 <p>Windows, Linux, Unix, OS-X</p>
-</dd>
-<dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
-<dd>
-<p>A contact detail that is not meant to be shared with others</p>
 </dd>
 </dl>
 </div>
@@ -1015,4 +1073,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-03 15:14:28 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-03 15:19:48 UTC</div></div></div></body></html>
