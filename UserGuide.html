@@ -621,6 +621,252 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 Format: <code>clear</code></p>
 </div>
 <div class="paragraph">
+<p>=== Templates List Management
+=== Add new template: 'tlist add'</p>
+</div>
+<div class="paragraph">
+<p>Adds a new template into template list.<br>
+Format: 'tlist add n/TEMPLATENAME'</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist add n/Weekly Necessities</code></p>
+</li>
+<li>
+<p><code>tlist add n/Birthday Party Prep</code></p>
+</li>
+<li>
+<p><code>tlist add n/Cake-Making</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>=== Rename template: <code>tlist rename</code></p>
+</div>
+<div class="paragraph">
+<p>Updates name of specified template in template list.<br>
+Format: <code>tlist rename INDEX n/TEMPLATENAME</code></p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the template at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed template list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist rename 1 n/Daily Necessities</code>
+Edits the name of the 1st template in the template list to <code>Daily Necessities</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>=== Deleting a template: <code>tlist delete</code></p>
+</div>
+<div class="paragraph">
+<p>Deletes a specified template from the template list.<br>
+Format: <code>tlist delete INDEX</code></p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the template at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed template list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist delete 1</code>
+Deletes the 1st template in the template list</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>=== Clear template list: <code>tlist clear</code></p>
+</div>
+<div class="paragraph">
+<p>Clears all template entries from the template list.<br>
+Format: <code>tlist clear</code></p>
+</div>
+<div class="paragraph">
+<p>=== Show list of all templates: <code>tlist all</code></p>
+</div>
+<div class="paragraph">
+<p>Shows all entries in the template list<br>
+Format: <code>tlist all</code></p>
+</div>
+<div class="paragraph">
+<p>=== Template Management
+=== Add new grocery item: <code>tlist n/TEMPLATENAME add</code></p>
+</div>
+<div class="paragraph">
+<p>Adds an item into a specified template.+
+Format: <code>tlist n/TEMPLATENAME add f/FOODITEM a/AMOUNT</code></p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Adds item into the template under the specified <code>TEMPLATENAME</code> as shown in the displayed template list.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist n/Weekly Necessities add n/Milk a/1l</code></p>
+</li>
+<li>
+<p><code>tlist n/Weekly Necessities add n/Eggs a/12</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>=== Edit item name: <code>tlist edit</code></p>
+</div>
+<div class="paragraph">
+<p>Edits a specified item in the specified template <code>TEMPLATENAME</code>.<br>
+Format: <code>tlist n/TEMPLATENAME edit INDEX [f/FOODITEM] [a/AMOUNT]</code></p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the food item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed template. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>Units in the amount field must match that of the item specified</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist n/Weekly Necessities edit 1 f/Low-Fat Milk</code>
+Edits the name of the first food item in the template <code>Weekly Necessities</code> to  <code>Low-Fat Milk</code></p>
+</li>
+<li>
+<p><code>tlist n/Weekly Necessities edit 1 a/2l</code>
+Edits the amount of the first food item in the template <code>Weekly Necessities</code> to 2 litres.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>=== Delete food item: <code>tlist n/TEMPLATENAME delete</code></p>
+</div>
+<div class="paragraph">
+<p>Deletes the specified item from the specified template.<br>
+Format: <code>tlist n/TEMPLATENAME delete INDEX</code></p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the food item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed template. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist n/Weekly Necessities delete 1</code>
+Deletes the first food item in the template <code>Weekly Necessities</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>=== Shows template: <code>tlist n/TEMPLATENAME</code></p>
+</div>
+<div class="paragraph">
+<p>Shows all entries in the specified template.<br>
+Format: <code>tlist n/TEMPLATENAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist n/Weekly Necessities</code>
+Shows all entries in the <code>Weekly Necessities</code> template</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>=== Generate shopping list: <code>slist addAll</code></p>
+</div>
+<div class="paragraph">
+<p>Generates a shopping list from all missing grocery items in the template.
+Format: <code>slist addAll [l/TEMPLATENAME] &#8230;&#8203;</code></p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>At least one template name must be provided.</p>
+</li>
+<li>
+<p>In the case of multiple template lists, the amount of duplicate items will be summed up.</p>
+</li>
+<li>
+<p>In the case of the shopping list already containing food items, the amount of duplicate items will be summed up.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Examples:
+* <code>slist addAll l/Weekly Necessities l/Birthday Cake</code>
+All entries from the templates <code>Weekly Necessities</code> and <code>Birthday Cake</code> will be added into the shopping list.</p>
+</div>
+<div class="paragraph">
 <p>=== Exiting the program : <code>exit</code></p>
 </div>
 <div class="paragraph">
@@ -686,4 +932,4 @@ e.g. <code>find James Jake</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-03 08:54:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-03 09:00:07 UTC</div></div></div></body></html>
