@@ -13,21 +13,11 @@
 <li><a href="#quick-start">2. Quick Start</a></li>
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
-<li><a href="#waste-list-management">3.1. Waste List Management</a></li>
-<li><a href="#viewing-help-code-help-code">3.2. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-person-code-add-code">3.3. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">3.4. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">3.5. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">3.6. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">3.7. Deleting a person : <code>delete</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.8. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.9. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.10. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.11. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#grocery-list-management">3.1. Grocery List Management</a></li>
+<li><a href="#viewing-grocery-list">3.2. Viewing grocery list</a></li>
+<li><a href="#waste-list-management">3.3. Waste List Management</a></li>
 </ul>
 </li>
-<li><a href="#faq">4. FAQ</a></li>
-<li><a href="#command-summary">5. Command Summary</a></li>
 </ul>
 </div>
 </div>
@@ -118,23 +108,148 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="waste-list-management"><a class="link" href="#waste-list-management">3.1. Waste List Management</a></h3>
+<h3 id="grocery-list-management"><a class="link" href="#grocery-list-management">3.1. Grocery List Management</a></h3>
 <div class="sect3">
-<h4 id="moving-an-item-into-waste-list"><a class="link" href="#moving-an-item-into-waste-list">3.1.1. Moving an item into waste list</a></h4>
+<h4 id="adding-a-food-item"><a class="link" href="#adding-a-food-item">3.1.1. Adding a food item</a></h4>
+<div class="paragraph">
+<p>Format: <code>add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT u/UNIT [t/TAG]</code></p>
+</div>
+<div class="paragraph">
+<p>Adds a food item to the grocery list</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listing-all-food-items"><a class="link" href="#listing-all-food-items">3.1.2. Listing all food items</a></h4>
+<div class="paragraph">
+<p>Format: <code>list</code></p>
+</div>
+<div class="paragraph">
+<p>Shows a list of food items in the grocery list</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-food-item-throw-away"><a class="link" href="#deleting-a-food-item-throw-away">3.1.3. Deleting a food item (Throw away)</a></h4>
+<div class="paragraph">
+<p>Format: <code>delete INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Deletes the specified food item from the grocery list when it is done being used
+If the amount of the food item left &gt; 0, the item will be moved to the waste list</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tagging-a-food-item"><a class="link" href="#tagging-a-food-item">3.1.4. Tagging a food item</a></h4>
+<div class="paragraph">
+<p>Format: <code>tag INDEX t/TAG</code></p>
+</div>
+<div class="paragraph">
+<p>Adds a tag to the specified food item in the grocery list</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-a-tag-from-an-item"><a class="link" href="#remove-a-tag-from-an-item">3.1.5. Remove a tag from an item</a></h4>
+<div class="paragraph">
+<p>Format: <code>remove INDEX t/TAG</code></p>
+</div>
+<div class="paragraph">
+<p>Removes the specified tag from the specified food item from the grocery list</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="use-an-item-subtract-by-the-amount"><a class="link" href="#use-an-item-subtract-by-the-amount">3.1.6. Use an item (Subtract by the amount)</a></h4>
+<div class="paragraph">
+<p>Format: <code>use INDEX a/AMOUNT</code></p>
+</div>
+<div class="paragraph">
+<p>Decreases the amount left of the item by the specified amount.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-an-item"><a class="link" href="#edit-an-item">3.1.7. Edit an item</a></h4>
+<div class="paragraph">
+<p>Format: <code>edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [a/AMOUNT]</code></p>
+</div>
+<div class="paragraph">
+<p>Edits an item based on the arguments provided</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-grocery-list"><a class="link" href="#viewing-grocery-list">3.2. Viewing grocery list</a></h3>
+<div class="sect3">
+<h4 id="sort-the-grocery-list"><a class="link" href="#sort-the-grocery-list">3.2.1. Sort the grocery list</a></h4>
+<div class="paragraph">
+<p>Format: <code>sort by/TYPE</code></p>
+</div>
+<div class="paragraph">
+<p>Sorts the grocery list based on the type of sorting
+The type of sorting is as follows:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>alphabetical: Sort the grocery list in alphabetical order</p>
+</li>
+<li>
+<p>expiry date: Sort the grocery list based on the expiry date</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort by/alphabetical</code></p>
+</li>
+<li>
+<p><code>sort by/expiry</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="filter"><a class="link" href="#filter">3.2.2. Filter</a></h4>
+<div class="paragraph">
+<p>Format: <code>filter t/TAG</code></p>
+</div>
+<div class="paragraph">
+<p>From the grocery list, returns a list of food items with the specified tag</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="find-an-item"><a class="link" href="#find-an-item">3.2.3. Find an item</a></h4>
+<div class="paragraph">
+<p>Format: <code>find STRING</code></p>
+</div>
+<div class="paragraph">
+<p>Returns a list of items, of which the items contain the input string</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="waste-list-management"><a class="link" href="#waste-list-management">3.3. Waste List Management</a></h3>
+<div class="sect3">
+<h4 id="moving-an-item-into-waste-list"><a class="link" href="#moving-an-item-into-waste-list">3.3.1. Moving an item into waste list</a></h4>
 <div class="paragraph">
 <p>When you delete an item from your grocery list using <code>delete</code>, the item will automatically be
 moved into the waste list if it has not been fully used (the amount of food remaining &gt; 0).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="moving-all-expired-food-items-from-grocery-list-to-waste-list"><a class="link" href="#moving-all-expired-food-items-from-grocery-list-to-waste-list">3.1.2. Moving all expired food items from grocery list to waste list</a></h4>
+<h4 id="moving-all-expired-food-items-from-grocery-list-to-waste-list"><a class="link" href="#moving-all-expired-food-items-from-grocery-list-to-waste-list">3.3.2. Moving all expired food items from grocery list to waste list</a></h4>
 <div class="paragraph">
 <p>By default, every time the application is launched, Food Orchestra helps you check which items
 are expired and automatically moves them into the waste list.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewing-the-waste-list-code-wlist-code"><a class="link" href="#viewing-the-waste-list-code-wlist-code">3.1.3. Viewing the waste list: <code>wlist</code></a></h4>
+<h4 id="viewing-the-waste-list-code-wlist-code"><a class="link" href="#viewing-the-waste-list-code-wlist-code">3.3.3. Viewing the waste list: <code>wlist</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of the food items which have been wasted<br>
 Format: <code>wlist [m/MONTH_OF_YEAR]</code><br></p>
@@ -169,7 +284,7 @@ Otherwise, the food waste of the current month is displayed.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="displaying-food-wastage-statistics-code-wlist-report-code"><a class="link" href="#displaying-food-wastage-statistics-code-wlist-report-code">3.1.4. Displaying food wastage statistics: <code>wlist report</code></a></h4>
+<h4 id="displaying-food-wastage-statistics-code-wlist-report-code"><a class="link" href="#displaying-food-wastage-statistics-code-wlist-report-code">3.3.4. Displaying food wastage statistics: <code>wlist report</code></a></h4>
 <div class="paragraph">
 <p>Shows a charted report detailing your food wastage statistics across a time frame.
 Format: <code>wlist report [sd/START_DATE] [ed/END_DATE]</code></p>
@@ -200,8 +315,6 @@ month apart.</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -218,14 +331,14 @@ month apart.</p>
 <div class="paragraph">
 <p>The allowable date formats can be found in the Natty library documentation.</p>
 </div>
+<div class="paragraph">
+<p>==== Obtain feedback based on current food wastage: <code>wlist feedback</code></p>
 </div>
-<div class="sect3">
-<h4 id="obtain-feedback-based-on-current-food-wastage-code-wlist-feedback-code"><a class="link" href="#obtain-feedback-based-on-current-food-wastage-code-wlist-feedback-code">3.1.5. Obtain feedback based on current food wastage: <code>wlist feedback</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>wlist feedback</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
 <div class="paragraph">
 <p>Shows the current month’s wastage statistics:</p>
 </div>
@@ -242,18 +355,17 @@ month apart.</p>
 </li>
 </ul>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>=== Viewing help : <code>help</code></p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.2. Viewing help : <code>help</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>help</code></p>
 </div>
+<div class="paragraph">
+<p>=== Adding a person: <code>add</code></p>
 </div>
-<div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">3.3. Adding a person: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
 Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
@@ -283,22 +395,22 @@ A person can have any number of tags (including 0)
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>=== Listing all persons : <code>list</code></p>
 </div>
-<div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.4. Listing all persons : <code>list</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all persons in the address book.<br>
 Format: <code>list</code></p>
 </div>
+<div class="paragraph">
+<p>=== Editing a person : <code>edit</code></p>
 </div>
-<div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">3.5. Editing a person : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing person in the address book.<br>
 Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -318,8 +430,8 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;
 </li>
 </ul>
 </div>
-</div>
-</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -335,15 +447,15 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>=== Locating persons by name: <code>find</code></p>
 </div>
-<div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">3.6. Locating persons by name: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds persons whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -363,8 +475,8 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </li>
 </ul>
 </div>
-</div>
-</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -380,15 +492,15 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>=== Deleting a person : <code>delete</code></p>
 </div>
-<div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">3.7. Deleting a person : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified person from the address book.<br>
 Format: <code>delete INDEX</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -402,8 +514,8 @@ Format: <code>delete INDEX</code></p>
 </li>
 </ul>
 </div>
-</div>
-</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -421,48 +533,43 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>=== Clearing all entries : <code>clear</code></p>
 </div>
-<div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.8. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code></p>
 </div>
+<div class="paragraph">
+<p>=== Exiting the program : <code>exit</code></p>
 </div>
-<div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.9. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
+<div class="paragraph">
+<p>=== Saving the data</p>
 </div>
-<div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.10. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
+<div class="paragraph">
+<p>=== Encrypting data files <code>[coming in v2.0]</code></p>
 </div>
-<div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.11. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
+<div class="paragraph">
+<p>== FAQ</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
 </div>
+<div class="paragraph">
+<p>== Command Summary</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
-<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -493,4 +600,8 @@ e.g. <code>find James Jake</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-03 07:21:55 UTC</div></div></div></body></html>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-03 07:32:31 UTC</div></div></div></body></html>
