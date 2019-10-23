@@ -40,7 +40,7 @@
 <ul class="sectlevel3">
 <li><a href="#moving-an-item-into-waste-list">3.4.1. Moving an item into waste list</a></li>
 <li><a href="#moving-all-expired-food-items-from-grocery-list-to-waste-list">3.4.2. Moving all expired food items from grocery list to waste list</a></li>
-<li><a href="#viewing-the-waste-list-code-wlist-code">3.4.3. Viewing the waste list: <code>wlist</code></a></li>
+<li><a href="#viewing-the-waste-list-code-wlist-list-code">3.4.3. Viewing the waste list: <code>wlist list</code></a></li>
 <li><a href="#displaying-food-wastage-statistics-code-wlist-report-code">3.4.4. Displaying food wastage statistics: <code>wlist report</code></a></li>
 <li><a href="#obtain-feedback-based-on-current-food-wastage-code-wlist-feedback-code">3.4.5. Obtain feedback based on current food wastage: <code>wlist feedback</code></a></li>
 <li><a href="#view-most-commonly-wasted-food-items-code-wlist-food-code">3.4.6. View most commonly wasted food items: <code>wlist food</code></a></li>
@@ -527,10 +527,10 @@ are expired and automatically moves them into the waste list.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewing-the-waste-list-code-wlist-code"><a class="link" href="#viewing-the-waste-list-code-wlist-code">3.4.3. Viewing the waste list: <code>wlist</code></a></h4>
+<h4 id="viewing-the-waste-list-code-wlist-list-code"><a class="link" href="#viewing-the-waste-list-code-wlist-list-code">3.4.3. Viewing the waste list: <code>wlist list</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of the food items which have been wasted<br>
-Format: <code>wlist [m/MONTH_OF_YEAR]</code><br></p>
+Format: <code>wlist list [m/MONTH_OF_YEAR]</code><br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -541,7 +541,8 @@ Format: <code>wlist [m/MONTH_OF_YEAR]</code><br></p>
 Otherwise, the food waste of the current month is displayed.</p>
 </li>
 <li>
-<p>The <code>MONTH_OF_YEAR</code> should be in the format <code>mmyyyy</code>, e.g. <code>032018</code> indicates March of 2018.</p>
+<p>The <code>MONTH_OF_YEAR</code> permits formats allowable by the Natty library. This includes both relative months
+and the exact month. We recommend specifying the format in the style of <code>MMM yyyy</code>, e.g. <code>sep 2019</code>.</p>
 </li>
 </ul>
 </div>
@@ -556,7 +557,7 @@ Otherwise, the food waste of the current month is displayed.</p>
 <p><code>wlist</code></p>
 </li>
 <li>
-<p><code>wlist m/022019</code></p>
+<p><code>wlist m/sep 2019</code></p>
 </li>
 </ul>
 </div>
@@ -565,7 +566,7 @@ Otherwise, the food waste of the current month is displayed.</p>
 <h4 id="displaying-food-wastage-statistics-code-wlist-report-code"><a class="link" href="#displaying-food-wastage-statistics-code-wlist-report-code">3.4.4. Displaying food wastage statistics: <code>wlist report</code></a></h4>
 <div class="paragraph">
 <p>Shows a charted report detailing your food wastage statistics across a time frame.
-Format: <code>wlist report [sd/START_DATE] [ed/END_DATE]</code></p>
+Format: <code>wlist report [sm/START_MONTH] [em/END_MONTH]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -575,21 +576,57 @@ Format: <code>wlist report [sd/START_DATE] [ed/END_DATE]</code></p>
 <p>The report will display 3 charts: kg, litres and units of food wasted per month across the
 time frame.</p>
 </li>
-<li>
-<p>If both the start date and the end date are not specified, the default will be for the time
-frame of 1 year, from 1 year before to the current time.</p>
-</li>
-<li>
-<p>If only the starting date is specified, the report will show the statistics from start date
-to the year following the start_date or the current time, whichever is earlier.</p>
-</li>
-<li>
-<p>If only the end date is specified, the report will show the statistics from the year before the
-end date to the end date.</p>
-</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 71.4286%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Start Month</th>
+<th class="tableblock halign-center valign-top">End Month</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The start and end month would follow that specified by the user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The start month follows that specified by the user, and the end month
+will by one year from the start month or the current month, whichever is earlier.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The end month follows that specified by the user, and the start month
+will be one year before the end month of the earliest month found in your waste archive,
+whichever is later.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The end month would be the current month, and the start month would be
+one year ago or the earliest month found in your waste archive, whichever is later.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
 <li>
 <p>If you wish to specify both the start and end dates, please ensure that they are at least one
 month apart.</p>
+</li>
+<li>
+<p>The dates can be specified in any format permissible by the Natty library. If you only wish to
+see your waste report starting 5 months ago, you can consider the command <code>wlist report sm/5 months ago</code></p>
 </li>
 </ul>
 </div>
@@ -601,10 +638,10 @@ month apart.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>wlist report sd/3 Mar 2019</code></p>
+<p><code>wlist report sm/Mar 2019</code></p>
 </li>
 <li>
-<p><code>wlist report sd/3 Mar 2019 ed/4 Oct 2019</code></p>
+<p><code>wlist report sm/Mar 2019 em/Oct 2019</code></p>
 </li>
 </ul>
 </div>
@@ -636,6 +673,15 @@ month apart.</p>
 </ul>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>Our prediction algorithm:<br>
+We first interpolate your current month&#8217;s waste statistics to arrive at an estimate. Following which,
+we take a weighted average of your waste statistics across the past couple of months to provide you with
+a more reliable prediction.</p>
+</div>
+<div class="paragraph">
+<p>As with any other application, our prediction algorithm will be more accurate with more frequent usage.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1098,4 +1144,4 @@ There is no need to save manually.</p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 14:22:36 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 14:29:22 UTC</div></div></div></body></html>
