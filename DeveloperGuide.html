@@ -28,6 +28,9 @@
 <li><a href="#logging">3.4. Logging</a></li>
 <li><a href="#use-grocery-feature">3.5. Use Grocery Feature</a></li>
 <li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#grocerylist-feature">3.7. GroceryList Feature</a></li>
+<li><a href="#wastelist-feature">3.8. WasteList Feature</a></li>
+<li><a href="#edit-template-item-feature">3.9. Edit Template Item feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -715,6 +718,179 @@ upon launch of the application, instead of calculating every time the waste repo
 <h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="grocerylist-feature"><a class="link" href="#grocerylist-feature">3.7. GroceryList Feature</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="wastelist-feature"><a class="link" href="#wastelist-feature">3.8. WasteList Feature</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="edit-template-item-feature"><a class="link" href="#edit-template-item-feature">3.9. Edit Template Item feature</a></h3>
+<div class="paragraph">
+<p>The edit template item mechanism is facilitated by <code>UniqueTemplateItems</code>, <code>TemplateList</code> and <code>TemplateToBeShown</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>TemplateList</code> is an observable list of <code>UniqueTemplateItems</code> while the UniqueTemplateItems contains an observable list
+of template items. The <code>TemplateToBeShown</code> is a instance of the <code>UniqueTemplateItems</code> that is used to show the current template
+that is visible on the user interface.</p>
+</div>
+<div class="paragraph">
+<p>To edit the individual templates stored in the <code>TemplateList</code>, the command retrieves the template as well as the item to be edited.
+Retrieving the existing item allows for retrieval of unchanged data field. The template item at the specified index will then be
+overwritten with a new edited TemplateItem.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, the <code>UniqueTemplateItems</code> object at the specified index will also be overwritten by a new <code>UniqueTemplateItems</code>
+containing the edited template item with unchanged template items already transferred into the new <code>UniqueTemplateItems</code> object.
+The model is updated with the new <code>TemplateList</code>, as well as the new <code>TemplateToBeShown</code>.</p>
+</div>
+<div class="paragraph">
+<p>The creation of new objects to override the previous is necessary as template items and templates are stored as immutable objects in the <code>UniqueTemplateItems</code>
+and <code>TemplateList</code> respectively, and therefore cannot be edited directly.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#getFilteredTemplateList()</code>&#8201;&#8212;&#8201;Gets an unmodifiable template list.</p>
+</li>
+<li>
+<p><code>Model#setTemplate()</code>&#8201;&#8212;&#8201;Replaces the previous template object with the new template object.</p>
+</li>
+<li>
+<p><code>Model#setShownTemplate()</code>&#8201;&#8212;&#8201;Replaces the previous templateToBeShown with the new template so that the edited template is visible in the UI.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#getFilteredTemplateList()</code>, <code>Model#setTemplate()</code>
+<code>Model#setShownTemplate()</code> and <code>Model#updateFilteredTemplateToBeShown()</code> respectively.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When the user launches the application for the first time. The <code>TemplateToBeShown</code> will be initialized however it will not
+be visible until a templateItemCommand is executed. This can be done using an AddTemplateItemCommand, a DeleteTemplateItemCommand,
+a ListTemplateItemCommand, or an EditTemplateItemCommand.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new command related to managing of template items:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/TemplateItemCommandUIActivityDiagram.png" alt="TemplateItemCommandUIActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the edit template item operation works for the logic component:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditTemplateItemSequenceDiagram2.png" alt="EditTemplateItemSequenceDiagram2">
+</div>
+</div>
+<div class="paragraph">
+<p>Due to lack of space, please refer to the below list for args1, args2, args3, args4 shown in the diagram above.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>args1: "tlist template edit 1 i/1 a/2units"</p>
+</li>
+<li>
+<p>args2: "template edit 1 i/1 a/2units"</p>
+</li>
+<li>
+<p>args3: "edit 1 i/1 a/2units"</p>
+</li>
+<li>
+<p>args4: "1 i/1 a/2units"</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code>,
+<code>EditTemplateItemCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the edit template item operation works for the model component:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditTemplateItemSequenceDiagram3.png" alt="EditTemplateItemSequenceDiagram3">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code>,
+<code>EditTemplateItemCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.9.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p>Aspect: How edit command is parsed</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Create a separate parser just for template item management</p>
+</li>
+<li>
+<p>Pros: Easy to implement. Parser structure follows the same structure as the model. More OOP.</p>
+</li>
+<li>
+<p>Cons: May be confusing to differentiate between TemplateItemParser and TemplateListParser.</p>
+</li>
+<li>
+<p>Alternative 2: The TemplateListParser is able to distinguish between template and template item management</p>
+</li>
+<li>
+<p>Pros: Less confusing as there is only one parser managing the template list.</p>
+</li>
+<li>
+<p>Cons: Implementation of the commands becomes more complicated. Less OOP.</p>
+</li>
+<li>
+<p>Alternative 3: The TemplateItemParser is at the same hierarchy as the TemplateListParser instead of inside.</p>
+</li>
+<li>
+<p>Pros: The user command can be shorter. E.g. "template edit &#8230;&#8203;" instead of "tlist template edit &#8230;&#8203;"</p>
+</li>
+<li>
+<p>Cons: Not as obvious to the user that both commands involve the same template list.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the edit template item operation works for the logic component:</p>
+</div>
 </div>
 </div>
 </div>
@@ -1456,4 +1632,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 02:11:08 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 02:17:21 UTC</div></div></div></body></html>
