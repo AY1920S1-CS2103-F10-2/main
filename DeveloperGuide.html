@@ -1083,7 +1083,7 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">see the expiry dates of my groceries</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">know when they expire.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manage my usage accordingly.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -1095,7 +1095,7 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">find a specific grocery</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">know more information about that grocery</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">be more efficient in finding a specific item</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -1117,7 +1117,7 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">forgetful user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">get reminders on expiring food items</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">prevent food wastage</p></td>
 </tr>
@@ -1129,7 +1129,7 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">organised user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sort food items</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">view grocery list with the specified sorting method</p></td>
 </tr>
@@ -1138,12 +1138,6 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">set default sort settings</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">view grocery list with the specified sorting method every time I display the grocery list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">merge food items with same name and expiry date when viewing grocery list</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">view grocery list in a more organized manner</p></td>
 </tr>
 </tbody>
 </table>
@@ -1168,7 +1162,7 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 <p>iFridge shows the list of grocery items</p>
 </li>
 <li>
-<p>User requests to edit a specific grocery item&#8217;s name/amount/expiry date</p>
+<p>User requests to edit a specific grocery item&#8217;s name/expiry date/tag</p>
 </li>
 <li>
 <p>iFridge performs the specified edit on the specified grocery item</p>
@@ -1207,11 +1201,35 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 <div class="ulist none">
 <ul class="none">
 <li>
+<p>3a. The given input is invalid</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. iFridge shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
 <p>2a. The list is empty.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
 <li>
 <p>3a. The given input is invalid</p>
 <div class="ulist none">
@@ -1632,4 +1650,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 16:44:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 11:13:29 UTC</div></div></div></body></html>

@@ -31,9 +31,8 @@
 <li><a href="#deleting-a-grocery-item-code-glist-delete-code">3.3.3. Deleting a grocery item: <code>glist delete</code></a></li>
 <li><a href="#use-a-grocery-item-code-glist-use-code">3.3.4. Use a grocery item: <code>glist use</code></a></li>
 <li><a href="#edit-a-grocery-item-code-glist-edit-code">3.3.5. Edit a grocery item: <code>glist edit</code></a></li>
-<li><a href="#sort-the-grocery-list-code-glist-sort-code-coming-in-v2-0">3.3.6. Sort the grocery list: <code>glist sort</code> (Coming in v2.0)</a></li>
-<li><a href="#filter-code-glist-filter-code-coming-in-v2-0">3.3.7. Filter: <code>glist filter</code> (Coming in v2.0)</a></li>
-<li><a href="#locating-items-by-name-code-glist-find-code-coming-in-v2-0">3.3.8. Locating items by name: <code>glist find</code> (Coming in v2.0)</a></li>
+<li><a href="#sort-the-grocery-list-code-glist-sort-code">3.3.6. Sort the grocery list: <code>glist sort</code></a></li>
+<li><a href="#finding-items-by-keywords-code-glist-find-code">3.3.7. Finding items by keywords: <code>glist find</code></a></li>
 </ul>
 </li>
 <li><a href="#waste-list-management">3.4. Waste List Management</a>
@@ -276,7 +275,7 @@ For same name <strong>and</strong> same expiry dates, it will be displayed based
 <div class="sect3">
 <h4 id="adding-a-food-item-code-glist-add-code"><a class="link" href="#adding-a-food-item-code-glist-add-code">3.3.1. Adding a food item: <code>glist add</code></a></h4>
 <div class="paragraph">
-<p>Adds a grocery item to the grocery list
+<p>Adds a grocery item to the grocery list.<br>
 Format: <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p>
 </div>
 <div class="sidebarblock">
@@ -284,10 +283,10 @@ Format: <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>e/EXPIRY_DATE</code> must follow the format <code>dd.MM.yyyy</code> or <code>dd/MM/yyyy</code> or <code>dd-MM-yyyy</code>.</p>
+<p><code>e/EXPIRY_DATE</code> must follow the format <code>dd/MM/yyyy</code>.</p>
 </li>
 <li>
-<p><code>a/AMOUNT</code> must have a magnitude i.e. measurable quantity. Amount unit is not mandatory. Magnitude and unit can be separated by a space.</p>
+<p><code>a/AMOUNT</code> must have a magnitude i.e. measurable quantity. Magnitude and unit can be separated by a space.</p>
 </li>
 <li>
 <p>There may be more than one tag field.</p>
@@ -305,15 +304,15 @@ Format: <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>glist add n/Fuji apples e/30.10.2019 t/healthy a/10units</code><br>
+<p><code>glist add n/Fuji apples e/30/10/2019 t/healthy a/10units</code><br>
 Add Fuji apples of quantity 10 units, tagged as "healthy" and expiring on 30 October 2019.</p>
 </li>
 <li>
-<p><code>glist add n/salad a/3 e/25.09.2019</code><br>
+<p><code>glist add n/salad a/3 e/25/09/2019</code><br>
 Add salad of quantity 3, untagged and expiring on 25 September 2019.</p>
 </li>
 <li>
-<p><code>glist add n/tea a/200 ml e/18.10.2019 t/fresh t/drink</code><br>
+<p><code>glist add n/tea a/200 ml e/18/10/2019 t/fresh t/drink</code><br>
 Add tea of quantity 200 ml, tagged as "fresh" and "drink" and expiring on 18 October 2019.</p>
 </li>
 </ul>
@@ -422,10 +421,13 @@ Edits the name of the 2nd item to <code>Olive oil</code> and clears all existing
 </div>
 </div>
 <div class="sect3">
-<h4 id="sort-the-grocery-list-code-glist-sort-code-coming-in-v2-0"><a class="link" href="#sort-the-grocery-list-code-glist-sort-code-coming-in-v2-0">3.3.6. Sort the grocery list: <code>glist sort</code> (Coming in v2.0)</a></h4>
+<h4 id="sort-the-grocery-list-code-glist-sort-code"><a class="link" href="#sort-the-grocery-list-code-glist-sort-code">3.3.6. Sort the grocery list: <code>glist sort</code></a></h4>
 <div class="paragraph">
 <p>Sorts the grocery list based on the type of sorting.<br>
-Format: <code>glist sort by/TYPE</code></p>
+Format: <code>glist sort by/TYPE</code><br></p>
+</div>
+<div class="paragraph">
+<p>Sorting is done on the original grocery list. Hence, for example, when <code>sort</code> is done after <code>find</code>, both the resultant <code>find</code> list and the original list will be sorted.</p>
 </div>
 <div class="paragraph">
 <p>The type of sorting supported is as follows:</p>
@@ -435,10 +437,10 @@ Format: <code>glist sort by/TYPE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Alphabetical: Sort the grocery list in alphabetical order</p>
+<p>Alphabetical: Sort the grocery list in ascending alphabetical order</p>
 </li>
 <li>
-<p>Expiry date: Sort the grocery list based on the expiry date</p>
+<p>Expiry date: Sort the grocery list in ascending expiry date. i.e. from oldest to newest.</p>
 </li>
 </ul>
 </div>
@@ -459,16 +461,9 @@ Format: <code>glist sort by/TYPE</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="filter-code-glist-filter-code-coming-in-v2-0"><a class="link" href="#filter-code-glist-filter-code-coming-in-v2-0">3.3.7. Filter: <code>glist filter</code> (Coming in v2.0)</a></h4>
+<h4 id="finding-items-by-keywords-code-glist-find-code"><a class="link" href="#finding-items-by-keywords-code-glist-find-code">3.3.7. Finding items by keywords: <code>glist find</code></a></h4>
 <div class="paragraph">
-<p>Returns a list of food items that matches the specified tag.<br>
-Format: <code>glist filter t/TAG</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="locating-items-by-name-code-glist-find-code-coming-in-v2-0"><a class="link" href="#locating-items-by-name-code-glist-find-code-coming-in-v2-0">3.3.8. Locating items by name: <code>glist find</code> (Coming in v2.0)</a></h4>
-<div class="paragraph">
-<p>Finds items whose names contain any of the given keywords.<br>
+<p>Finds items whose name or tag contain any of the given keywords.<br>
 Format: <code>glist find KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
@@ -482,13 +477,13 @@ Format: <code>glist find KEYWORD [MORE_KEYWORDS]</code></p>
 <p>The order of the keywords does not matter. e.g. <code>apple milk</code> will match <code>milk apple</code></p>
 </li>
 <li>
-<p>Only the item name is searched.</p>
+<p>Only the item name and tag are searched.</p>
 </li>
 <li>
 <p>Only full words will be matched e.g. <code>appl</code> will not match <code>apple</code></p>
 </li>
 <li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>apple milk</code> will return <code>Apple juice</code>, <code>Mango milk</code></p>
+<p>Grocery items matching at least one keyword will be returned (i.e. it uses an <code>OR</code> search). e.g. <code>apple dinner</code> will return <code>Apple juice</code>, <code>Pizza</code> tagged with <code>dinner</code>, and <code>Apple pie</code> tagged with <code>dinner</code>.</p>
 </li>
 </ul>
 </div>
@@ -501,11 +496,11 @@ Format: <code>glist find KEYWORD [MORE_KEYWORDS]</code></p>
 <ul>
 <li>
 <p><code>glist find apple</code><br>
-Returns <code>Fuji apple</code> and <code>Apple loaf cake</code></p>
+Returns <code>Fuji apple</code> and <code>Apple loaf cake</code> and other items tagged as <code>apple</code></p>
 </li>
 <li>
 <p><code>glist find milo doughnut roasted</code><br>
-Returns any grocery item which contains any of the names <code>milo</code>, <code>doughnut</code>, or <code>roasted</code></p>
+Returns any grocery item which contains any of the word <code>milo</code>, <code>doughnut</code>, or <code>roasted</code> as either name or tag or both</p>
 </li>
 </ul>
 </div>
@@ -1165,4 +1160,4 @@ There is no need to save manually.</p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 16:44:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 11:13:29 UTC</div></div></div></body></html>
