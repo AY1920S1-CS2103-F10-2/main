@@ -537,8 +537,9 @@ Format: <code>wlist list [m/MONTH_OF_YEAR]</code><br></p>
 Otherwise, the food waste of the current month is displayed.</p>
 </li>
 <li>
-<p>The <code>MONTH_OF_YEAR</code> permits formats allowable by the Natty library. This includes both relative months
-and the exact month. We recommend specifying the format in the style of <code>MMM yyyy</code>, e.g. <code>sep 2019</code>.</p>
+<p>The <code>MONTH_OF_YEAR</code> is the natural language month and year expression in English.
+To avoid ambiguity, we recommend specifying the month and year in a relaxed date format,
+e.g. <code>Aug 2019</code>.</p>
 </li>
 </ul>
 </div>
@@ -550,10 +551,13 @@ and the exact month. We recommend specifying the format in the style of <code>MM
 <div class="ulist">
 <ul>
 <li>
-<p><code>wlist</code></p>
+<p><code>wlist list</code><br>
+This will list out the current month&#8217;s waste list.</p>
 </li>
 <li>
-<p><code>wlist m/sep 2019</code></p>
+<p><code>wlist list m/sep 2019</code><br>
+This will list out the waste list for the month of September 2019, if such a record exists in our
+waste archive (i.e. you have opened our application in the month of September 2019).</p>
 </li>
 </ul>
 </div>
@@ -572,72 +576,98 @@ Format: <code>wlist report [sm/START_MONTH] [em/END_MONTH]</code></p>
 <p>The report will display 3 charts: kg, litres and units of food wasted per month across the
 time frame.</p>
 </li>
+<li>
+<p>The dates can be specified in any format permissible by the Natty library. If you only wish to
+see your waste report starting 5 months ago, you can consider the command <code>wlist report sm/5 months ago</code>.
+To avoid ambiguity, you are advised to specify the dates in the relaxed date format (e.g. <code>Sep 2019</code>).</p>
+</li>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 14.2857%;">
-<col style="width: 14.2857%;">
-<col style="width: 71.4286%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-center valign-top">Start Month</th>
 <th class="tableblock halign-center valign-top">End Month</th>
-<th class="tableblock halign-left valign-top">Result</th>
+<th class="tableblock halign-left valign-top">Start Month Used</th>
+<th class="tableblock halign-left valign-top">End Month Used</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The start and end month would follow that specified by the user.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The start month follows that specified by the user, and the end month
-will by one year from the start month or the current month, whichever is earlier.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The end month follows that specified by the user, and the start month
-will be one year before the end month of the earliest month found in your waste archive,
+<td class="tableblock halign-left valign-top"><p class="tableblock">The start month follows that specified by the user, or the earliest record found in our waste archive,
 whichever is later.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The end month follows that specified by the user, or the current month, whichever is earlier.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The start month follows that specified by the user, or the earliest record found in our waste archive,
+whichever is later.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The end month will be one year from the specified start month or the current month, whichever is earlier.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The start month will be one year before the end month specified, or the earliest month found in our waste archive,
+whichever is later.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The end month follows that specified by the user, or the current month, whichever is earlier.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The end month would be the current month, and the start month would be
-one year ago or the earliest month found in your waste archive, whichever is later.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The start month would be one year ago from the current month, or the earliest month found in your waste archive,
+whichever is later.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The end month would be the current month.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="ulist">
-<ul>
-<li>
-<p>If you wish to specify both the start and end dates, please ensure that they are at least one
-month apart.</p>
-</li>
-<li>
-<p>The dates can be specified in any format permissible by the Natty library. If you only wish to
-see your waste report starting 5 months ago, you can consider the command <code>wlist report sm/5 months ago</code></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>To illustrate an example, suppose we have a waste archive with waste data from the months of Oct 2018, Nov 2018, &#8230;&#8203;,
+Oct 2019 (the current month). We specify Aug 2018 as a start month and Jun 2019 as an end month, as
+shown below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/WasteReportTimeFrame.png" alt="WasteReportTimeFrame">
+</div>
+</div>
+<div class="paragraph">
+<p>iFridge will generate the report using all available data within the time period, which will be
+Jun 2018 to Jun 2019, highlighted in the yellow box.</p>
 </div>
 </div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
+<div class="paragraph">
+<p>Suppose we have a waste archive with data from Oct 2018 to Oct 2019 (current month).</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>wlist report sm/Mar 2019</code></p>
+<p><code>wlist report sm/Mar 2019</code><br>
+Generates a waste report from Mar 2019 to the current month of Oct 2019.</p>
 </li>
 <li>
-<p><code>wlist report sm/Mar 2019 em/Oct 2019</code></p>
+<p><code>wlist report sm/Mar 2019 em/Sep 2019</code><br>
+Generates a waste report from Mar 2019 to Sep 2019</p>
+</li>
+<li>
+<p><code>wlist report sm/Mar 2018</code><br>
+Generates a waste report from Oct 2018 to Mar 2019 (one year from Mar 2018)</p>
+</li>
+<li>
+<p><code>wlist report sm/5 months ago</code><br>
+Generates a waste report from May 2019 to Oct 2019 (current month)</p>
 </li>
 </ul>
 </div>
@@ -1160,4 +1190,4 @@ There is no need to save manually.</p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 04:17:03 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 04:31:35 UTC</div></div></div></body></html>
