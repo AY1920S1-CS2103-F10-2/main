@@ -101,7 +101,15 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook Level 3 (AB3) is for those who <strong>prefer to use a desktop app for managing contacts</strong>. More importantly, AB3 is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>In order to encourage and facilitate these consumer behaviours that can reduce food waste,
+we have designed iFridge, an easy-to-use application that allows users to keep track and manage
+their food inventory in the Grocery List feature, generate shopping lists in Shopping List, and
+track their food waste and monthly performance in the Waste List feature. We also allow you to
+create Template Lists: If you have a list of staple items you wish to maintain in your fridge,
+you can store it as a template list so that you can generate a shopping list based on what is
+currently missing from your pantry.<br>
+Interested?
+Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
@@ -114,7 +122,7 @@
 <p>Ensure you have Java <code>11</code> or above installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>iFridge.jar</code> <a href="https://github.com/se-edu/addressbook-level3/releases">here</a>.</p>
+<p>Download the latest <code>iFridge.jar</code> <a href="https://github.com/AY1920S1-CS2103-F10-2/main/releases/releases">here</a>.</p>
 </li>
 <li>
 <p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
@@ -136,13 +144,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list</code></strong> : lists all food items in your grocery list</p>
+<p><strong><code>glist list</code></strong> : lists all food items in your grocery list</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>add n/milk e/23/10/2019 a/1000 u/ml</code> : adds the food item <code>milk</code> to the iFridge application.</p>
+<p><strong><code>glist add n/Milk e/23/10/2019 a/1000ml</code></strong> : adds the food item <code>Milk</code> to the iFridge application.</p>
 </li>
 <li>
-<p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
+<p><strong><code>slist delete 1</code></strong> deletes the first item shown in the shopping list</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
@@ -168,10 +176,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/ITEM_NAME</code>, <code>ITEM_NAME</code> is a parameter which can be used as <code>add n/apple</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT</code>, <code>ITEM_NAME</code>, <code>EXPIRY_DATE</code>, and <code>AMOUNT</code> are parameters which can be used as <code>glist add n/apple e/23/10/2019 a/3units</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/apple t/fruit</code> or as <code>n/apple</code>.</p>
+<p>Items in square brackets are optional e.g <code>glist add n/NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code> can be used as <code>n/apple e/23/10/2019 a/3units t/fruit</code> or as <code>n/apple e/23/10/2019 a/3units</code>.</p>
 </li>
 <li>
 <p>Items with … after them can be used multiple times including zero times e.g. <code>[t/TAG]…</code> can be used as ` ` (i.e. 0 times), <code>t/fruit</code>, <code>t/fruit t/healthy</code> etc.</p>
@@ -1219,27 +1227,139 @@ There is no need to save manually.</p>
 <div class="sect1">
 <h2 id="command-summary"><a class="link" href="#command-summary">6. Command Summary</a></h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Add</strong> <code>slist add f/FOOD_ITEM a/AMOUNT</code></p>
-</li>
-<li>
-<p><strong>AddTemp</strong> <code>slist addTemp INDEX</code></p>
-</li>
-<li>
-<p><strong>Delete</strong> : <code>slist delete INDEX</code></p>
-</li>
-<li>
-<p><strong>Edit</strong> : <code>slist edit INDEX [f/FOOD_ITEM] [a/AMOUNT]</code></p>
-</li>
-<li>
-<p><strong>Merge</strong> : <code>slist merge bought</code></p>
-</li>
-<li>
-<p><strong>Bought</strong> : <code>slist bought INDEX [e/EXPIRY_DATE] [a/AMOUNT]</code></p>
-</li>
-</ul>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a grocery item to the grocery list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist list</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows a list of grocery items in the grocery list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist delete INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the specified grocery item from the grocery list when it is done being used. If the amount of the food item left &gt; 0, the item will be moved to the waste list.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist use INDEX a/AMOUNT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reduces the amount left of a grocery item by the specified amount</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [t/TAG]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edits an existing item in the grocery list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist sort by/TYPE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sorts the grocery list based on the type of sorting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist find KEYWORD [MORE_KEYWORDS]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Finds items whose name or tag contain any of the given keywords.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wlist list [m/MONTH_OF_YEAR]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows a list of the food items which have been wasted in the specified month</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wlist report [sm/START_MONTH] [em/END_MONTH]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows a charted report detailing your food wastage statistics across a time frame</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wlist feedback</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Obtain feedback based on current food wastage</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist add n/TEMPLATENAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new template into template list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist edit INDEX n/TEMPLATENAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Updates name of specified template in template list.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist delete INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes a specified template from the template list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist clear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clears all template entries from the template list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist list</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows all entries in the template list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist template add TEMPLATEINDEX [n/NAME] [a/AMOUNT]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds an item into a specified template</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist n/TEMPLATENAME edit INDEX [f/FOODITEM] [a/AMOUNT]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edits a specified item in the specified template TEMPLATENAME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist template delete TEMPLATEINDEX i/ITEMINDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the specified item from the specified template</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist template list TEMPLATEINDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows all entries in the specified template</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist add f/FOOD_ITEM a/AMOUNT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new item to the shopping list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist addTemp INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds all template items that are not currently found in the grocery list into the shopping list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist edit INDEX [f/FOODNAME] [a/AMOUNT]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edits the name of a specified item in a shopping list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist delete INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Delete specified item from shopping list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist list</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lists out all items in the shopping list with bought items first</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist bought INDEX e/EXPIRYDATE a/AMOUNT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marks an item as bought and assigns the expiry date and amount to that item</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist merge bought</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds all items marked as ‘bought’ to the grocery list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist addTemp TEMPLATEINDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generates a shopping list from all missing grocery items in the template</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remDefault r/NUMBER_OF_DAYS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display list with all food expiring within n days</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exits the program</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays help</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 09:02:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 09:10:11 UTC</div></div></div></body></html>
