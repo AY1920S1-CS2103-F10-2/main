@@ -69,9 +69,14 @@
 <li><a href="#add-new-item-to-shopping-list-code-slist-add-code">3.7.1. Add new item to shopping list: <code>slist add</code></a></li>
 <li><a href="#add-items-in-template-into-shopping-list-code-slist-addtemp-code">3.7.2. Add items in template into shopping list: <code>slist addTemp</code></a></li>
 <li><a href="#edit-item-in-shopping-list-code-slist-edit-code">3.7.3. Edit item in shopping list: <code>slist edit</code></a></li>
-<li><a href="#generate-shopping-list-code-slist-addtemp-code">3.7.4. Generate shopping list: <code>slist addTemp</code></a></li>
-<li><a href="#undo-shopping-list-code-slist-undo-code">3.7.5. Undo Shopping List: <code>slist undo</code></a></li>
-<li><a href="#redo-shopping-list-code-slist-redo-code">3.7.6. Redo Shopping List: <code>slist redo</code></a></li>
+<li><a href="#delete-item-in-shopping-list-code-slist-delete-code">3.7.4. Delete item in shopping list: <code>slist delete</code></a></li>
+<li><a href="#show-shopping-list-code-slist-list-code">3.7.5. Show shopping list: <code>slist list</code></a></li>
+<li><a href="#mark-item-as-bought-code-slist-bought-code">3.7.6. Mark item as 'bought’: <code>slist bought</code></a></li>
+<li><a href="#add-bought-items-code-slist-mergebought-code">3.7.7. Add bought items: <code>slist mergebought</code></a></li>
+<li><a href="#mark-shopping-item-as-urgent-code-slist-urgent-code">3.7.8. Mark shopping item as Urgent: <code>slist urgent</code></a></li>
+<li><a href="#generate-shopping-list-code-slist-addtemp-code">3.7.9. Generate shopping list: <code>slist addTemp</code></a></li>
+<li><a href="#undo-shopping-list-code-slist-undo-code">3.7.10. Undo Shopping List: <code>slist undo</code></a></li>
+<li><a href="#redo-shopping-list-code-slist-redo-code">3.7.11. Redo Shopping List: <code>slist redo</code></a></li>
 </ul>
 </li>
 <li><a href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></li>
@@ -1029,22 +1034,32 @@ Format: <code>slist edit INDEX [f/FOODNAME] [a/AMOUNT]</code></p>
 </li>
 </ul>
 </div>
+</div>
+</div>
 <div class="paragraph">
-<p>Examples:
-* <code>slist edit 3 f/pomegranate</code>
-Edits the name of the third food item in the shopping list to  <code>pomegranate</code>
-* <code>slist edit 2 a/2l</code>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>slist edit 3 f/pomegranate</code>
+Edits the name of the third food item in the shopping list to  <code>pomegranate</code></p>
+</li>
+<li>
+<p><code>slist edit 2 a/2l</code>
 Edits the amount of the second food item in the shopping list to 2 litres.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>==== Delete item in shopping list: <code>slist delete</code></p>
 </div>
+<div class="sect3">
+<h4 id="delete-item-in-shopping-list-code-slist-delete-code"><a class="link" href="#delete-item-in-shopping-list-code-slist-delete-code">3.7.4. Delete item in shopping list: <code>slist delete</code></a></h4>
 <div class="paragraph">
 <p>Delete specified item from shopping list.<br>
 Format: <code>slist delete INDEX</code></p>
 </div>
-</div>
-</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -1052,8 +1067,8 @@ Format: <code>slist delete INDEX</code></p>
 </li>
 </ul>
 </div>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -1065,9 +1080,9 @@ Deletes the first food item in the shopping list.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>==== Show shopping list: <code>slist list</code></p>
 </div>
+<div class="sect3">
+<h4 id="show-shopping-list-code-slist-list-code"><a class="link" href="#show-shopping-list-code-slist-list-code">3.7.5. Show shopping list: <code>slist list</code></a></h4>
 <div class="paragraph">
 <p>Lists out all items in the shopping list with bought items first
 Format: <code>slist list</code></p>
@@ -1078,18 +1093,36 @@ Format: <code>slist list</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>slist</code>
+<p><code>slist list</code>
 Shows all entries in the shopping list.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="mark-item-as-bought-code-slist-bought-code"><a class="link" href="#mark-item-as-bought-code-slist-bought-code">3.7.6. Mark item as 'bought’: <code>slist bought</code></a></h4>
 <div class="paragraph">
-<p>==== Mark item as 'bought’: <code>slist bought</code></p>
+<p>Marks the specified item as bought and assigns the expiry date and amount to that item</p>
 </div>
 <div class="paragraph">
-<p>Marks an item as bought and assigns the expiry date and amount to that item
-There is flexibility in the amount of items that are bought. You can indicate more or less number of items bought than the number indicated in the shopping list.
-Format: <code>slist bought INDEX e/EXPIRYDATE a/AMOUNT</code></p>
+<p>Format: <code>slist bought INDEX e/EXPIRYDATE a/AMOUNT</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Marks the shopping item at the specified <code>INDEX</code> as bought. The index refers to the index number shown in the shopping list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Both <code>EXPIRYDATE</code> and <code>AMOUNT</code> of items bought must be specified. <code>AMOUNT</code> must match with that of the item in the shopping list.</p>
+</li>
+<li>
+<p>There is flexibility in the amount of items that are bought. You can indicate more or less quantity of items bought than the number indicated in the shopping list.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1106,15 +1139,15 @@ Marks the item at index 2 as bought and sets its expiry date as 3rd November, 20
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>==== Add bought items: <code>slist merge bought</code></p>
 </div>
+<div class="sect3">
+<h4 id="add-bought-items-code-slist-mergebought-code"><a class="link" href="#add-bought-items-code-slist-mergebought-code">3.7.7. Add bought items: <code>slist mergebought</code></a></h4>
 <div class="paragraph">
 <p>Adds all items marked as ‘bought’ to the grocery list.
-Format: <code>slist merge bought</code></p>
+Format: <code>slist mergebought</code></p>
 </div>
-</div>
-</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -1124,15 +1157,64 @@ Format: <code>slist merge bought</code></p>
 <p>If the item with same expiry date is already present in the shopping list, just add the amount to the amount already present in the grocery list.</p>
 </li>
 <li>
-<p><code>slist merge bought</code>
-Merges all the items in shopping list marked as bought into the grocery list.
-This command cannot be undone/redone.</p>
+<p>For each bought item, if the amount bought is less than the amount of that item in the shopping list, the amount of that item in the shopping list is now the remaining amount to be bought.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Eg: Consider a shopping item 'NAME: Orange, AMOUNT: 2units' in the shopping list.</p>
+</li>
+<li>
+<p>Then, when marking the item as bought, you indicate the amount of 'Orange' that is bought is 1unit.</p>
+</li>
+<li>
+<p>If now you call <code>slist mergebought</code>, shopping list will still have 'NAME: Orange, AMOUNT: 1units', i.e., the amount in shopping list is subtracted to reflect the remaining amount to be bought.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This command cannot be undone/redone.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mark-shopping-item-as-urgent-code-slist-urgent-code"><a class="link" href="#mark-shopping-item-as-urgent-code-slist-urgent-code">3.7.8. Mark shopping item as Urgent: <code>slist urgent</code></a></h4>
+<div class="paragraph">
+<p>Marks the specified item in the shopping list as <strong>urgent!</strong>
+When shopping list is displayed, urgent items are shown at the top with an indication that the item is 'urgent!'
+Items in the shopping list are sorted by urgent status first, alphabetical order next.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>slist urgent 1</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Marks the shopping item at the specified <code>INDEX</code> as urgent. The index refers to the index number shown in the shopping list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>slist urgent 1</code>
+Marks the shopping item at <code>INDEX</code> 1 as urgent. That item is tagged as 'urgent' and -moves to the top of the shopping list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="generate-shopping-list-code-slist-addtemp-code"><a class="link" href="#generate-shopping-list-code-slist-addtemp-code">3.7.4. Generate shopping list: <code>slist addTemp</code></a></h4>
+<h4 id="generate-shopping-list-code-slist-addtemp-code"><a class="link" href="#generate-shopping-list-code-slist-addtemp-code">3.7.9. Generate shopping list: <code>slist addTemp</code></a></h4>
 <div class="paragraph">
 <p>Generates a shopping list from all missing grocery items in the template.
 Format: <code>slist addTemp [l/INDEX] &#8230;&#8203;</code></p>
@@ -1155,13 +1237,19 @@ Format: <code>slist addTemp [l/INDEX] &#8230;&#8203;</code></p>
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:
-* <code>slist addTemp l/Weekly Necessities l/Birthday Cake</code>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>slist addTemp l/Weekly Necessities l/Birthday Cake</code>
 All entries from the templates <code>Weekly Necessities</code> and <code>Birthday Cake</code> will be added into the shopping list.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="undo-shopping-list-code-slist-undo-code"><a class="link" href="#undo-shopping-list-code-slist-undo-code">3.7.5. Undo Shopping List: <code>slist undo</code></a></h4>
+<h4 id="undo-shopping-list-code-slist-undo-code"><a class="link" href="#undo-shopping-list-code-slist-undo-code">3.7.10. Undo Shopping List: <code>slist undo</code></a></h4>
 <div class="paragraph">
 <p>Undo the shopping list.<br>
 Format: <code>slist undo</code></p>
@@ -1171,7 +1259,7 @@ Format: <code>slist undo</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="redo-shopping-list-code-slist-redo-code"><a class="link" href="#redo-shopping-list-code-slist-redo-code">3.7.6. Redo Shopping List: <code>slist redo</code></a></h4>
+<h4 id="redo-shopping-list-code-slist-redo-code"><a class="link" href="#redo-shopping-list-code-slist-redo-code">3.7.11. Redo Shopping List: <code>slist redo</code></a></h4>
 <div class="paragraph">
 <p>Redo the shopping list.<br>
 Format: <code>slist redo</code></p>
@@ -1335,6 +1423,10 @@ There is no need to save manually.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Delete specified item from shopping list</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist urgent INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marks the specified shopping item as 'urgent!'</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist list</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lists out all items in the shopping list with bought items first</p></td>
 </tr>
@@ -1365,4 +1457,4 @@ There is no need to save manually.</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 14:02:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 14:11:14 UTC</div></div></div></body></html>
