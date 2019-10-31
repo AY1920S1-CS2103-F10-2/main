@@ -271,6 +271,12 @@ Format: <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p>
 <li>
 <p>The input fields can be in any order.</p>
 </li>
+<li>
+<p>Item with <strong>either same name or expiry date</strong> as the existing ones can be added.</p>
+</li>
+<li>
+<p>Items with <strong>same name and expiry date</strong> as the existing ones cannot be added.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -324,10 +330,33 @@ Format: <code>glist use INDEX a/AMOUNT</code></p>
 <p>The system only recognises metric units. e.g. kilogram, liter. The system does not support unrecognised units such as tablespoon (not precise), and pint (not a metric unit).</p>
 </li>
 <li>
-<p>Metric units with different metric prefixes is allowed. e.g. gram, milliliter.</p>
+<p>Only the units in the following unit categories are supported:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Weight</code>: <code>kg</code>, <code>g</code>, <code>oz</code>, <code>lbs</code></p>
+</li>
+<li>
+<p><code>Volume</code>: <code>L</code>, <code>ml</code></p>
+</li>
+<li>
+<p><code>Quantity</code>: <code>units</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Whitespace between magnitude and unit is allowed.</p>
+</li>
+<li>
+<p>Cross conversion between units of the same categories is supported.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If the unit of input amount is different from the unit of item, the resultant amount would follow the unit of the original item. e.g. If an item of <code>1kg</code> is used by <code>300g</code>, it would become <code>0.7kg</code> and not <code>700g</code>.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -1457,4 +1486,4 @@ There is no need to save manually.</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 14:11:14 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 14:21:31 UTC</div></div></div></body></html>
