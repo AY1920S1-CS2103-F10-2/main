@@ -10,7 +10,8 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>iFridge is a desktop grocery management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has a lot of code.</p>
+<p>iFridge is a desktop grocery management application to encourage home cooks to manage their food waste. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java, and has a about 20kLoC.</p>
 </div>
 </div>
 </div>
@@ -20,10 +21,49 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>:</p>
+<p><strong>Major enhancement</strong>: adding <strong>the ability to add a template to the shopping list</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to add items in a specified template that are not currently in their grocery list. The feature
+is able to deal with duplicate items as well as exclude expired items when checking the grocery list.</p>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: tbd</p>
+<p>Justification: This feature improves the product significantly by making it easy for the user to generate shopping lists without having to
+check the fridge. In addition, the feature makes it easy for the user to generate shopping lists involving regular grocery items instead of having to add them one by one.
+Users can also use it to store the ingredients list of recipes.</p>
+</li>
+<li>
+<p>Highlights: This feature is able to subtract the amount of each item already in the grocery list from the template item to be added into the shopping list.
+In the case that the item to be added is already in the shopping list, the item amount is updated with the sum of needed amount and the previous amount recorded.
+To complement this function, a UnitDictionary class was added in order to enable cross-unit calculations as long as the units were of the same unit type.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added template list that allows the user to create and manage templates</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For templates: Add, Edit, Delete, Clear, and List templates in the template list</p>
+</li>
+<li>
+<p>For individual template: Add, Edit, Delete, and List items in a template</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added unit dictionary that keeps tracks of the unit types of items with the same name (note: non case-sensitive)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Supports the ability of the app to carry out arithmetic functions on similar items with different units by checking that all items with the same name
+have the same unit type. E.g. Volume unit type: ml, L or Weight unit type: g, kg, oz, lbs</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Code contributed</strong>: The samples of my functional and test code can be viewed <a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=teika97">here</a>.</p>
@@ -36,11 +76,21 @@
 <p>Project management:</p>
 </li>
 <li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the Food class to include an Amount field <a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/34">#34</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p>Documentation:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/30">#30</a></p>
+<p>Updated ContactUs, AboutUs: <a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/14">#30</a></p>
 </li>
 </ul>
 </div>
@@ -50,20 +100,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com/zhangxuan97/ped/issues/3">1</a>, <a href="https://github.com/zhangxuan97/ped/issues/13">2</a>, <a href="https://github.com/zhangxuan97/ped/issues/6">3</a>)</p>
-</li>
-</ul>
-</div>
+<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com/teika97/ped/issues/1">1</a>, <a href="https://github.com/teika97/ped/issues/3">3</a>, <a href="https://github.com/teika97/ped/issues/4">4</a>)</p>
 </li>
 <li>
-<p>Tools:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/92/commits/4158271b466907502b8387f1d5b5a07dcd5c12cc">#92</a>)</p>
-</li>
-<li>
-<p>Integrated a third party library (JFreeChart) to the project (<a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/124/files">#124</a>)</p>
+<p>Contributed to forum discussions (examples: &#8230;&#8203;)</p>
 </li>
 </ul>
 </div>
@@ -84,37 +124,47 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>As we morphed the product, we kept the user guide up to date with the features we implemented. Below is an excerpt of my notable contributions.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Below are some notable sections I contributed to the User Guide which showcase my ability to write documentation targeting our target end-users.</em></p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="waste-list-management"><a class="link" href="#waste-list-management">Waste List Management</a></h3>
+<h3 id="templates-list-management"><a class="link" href="#templates-list-management">Templates List Management</a></h3>
 <div class="sect3">
-<h4 id="moving-an-item-into-waste-list"><a class="link" href="#moving-an-item-into-waste-list">Moving an item into waste list</a></h4>
+<h4 id="add-new-template-code-tlist-add-code"><a class="link" href="#add-new-template-code-tlist-add-code">Add new template: <code>tlist add</code></a></h4>
 <div class="paragraph">
-<p>When you delete an item from your grocery list using <code>delete</code>, the item will automatically be
-moved into the waste list if it has not been fully used (the amount of food remaining &gt; 0).</p>
+<p>Adds a new template into template list.<br>
+Format: <code>tlist add n/TEMPLATENAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist add n/Weekly Necessities</code></p>
+</li>
+<li>
+<p><code>tlist add n/Birthday Party Prep</code></p>
+</li>
+<li>
+<p><code>tlist add n/Beef Goulash</code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewing-the-waste-list-code-wlist-list-code"><a class="link" href="#viewing-the-waste-list-code-wlist-list-code">Viewing the waste list: <code>wlist list</code></a></h4>
+<h4 id="edit-template-name-code-tlist-edit-code"><a class="link" href="#edit-template-name-code-tlist-edit-code">Edit template name: <code>tlist edit</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of the food items which have been wasted<br>
-Format: <code>wlist list [m/MONTH_OF_YEAR]</code><br></p>
+<p>Updates name of specified template in template list.<br>
+Format: <code>tlist edit INDEX n/TEMPLATENAME</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>If a particular month is specified, the food waste of the particular month will be displayed.
-Otherwise, the food waste of the current month is displayed.</p>
-</li>
-<li>
-<p>The <code>MONTH_OF_YEAR</code> is the natural language month and year expression in English.
-To avoid ambiguity, we recommend specifying the month and year in a relaxed date format,
-e.g. <code>Aug 2019</code>.</p>
+<p>Edits the template at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed template list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -126,387 +176,239 @@ e.g. <code>Aug 2019</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>wlist list</code><br>
-This will list out the current month&#8217;s waste list.</p>
-</li>
-<li>
-<p><code>wlist list m/sep 2019</code><br>
-This will list out the waste list for the month of September 2019, if such a record exists in our
-waste archive (i.e. you have opened our application in the month of September 2019).</p>
+<p><code>tlist edit 1 n/Daily Necessities</code>
+Edits the name of the 1st template in the template list to <code>Daily Necessities</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="displaying-food-wastage-statistics-code-wlist-report-code"><a class="link" href="#displaying-food-wastage-statistics-code-wlist-report-code">Displaying food wastage statistics: <code>wlist report</code></a></h4>
+<h4 id="deleting-a-template-code-tlist-delete-code"><a class="link" href="#deleting-a-template-code-tlist-delete-code">Deleting a template: <code>tlist delete</code></a></h4>
 <div class="paragraph">
-<p>Shows a charted report detailing your food wastage statistics across a time frame.
-Format: <code>wlist report [sm/START_MONTH] [em/END_MONTH]</code></p>
+<p>Deletes a specified template from the template list.<br>
+Format: <code>tlist delete INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The report will display 3 charts: kg, litres and units of food wasted per month across the
-time frame.</p>
-</li>
-<li>
-<p>The dates can be specified in any format permissible by the Natty library. If you only wish to
-see your waste report starting 5 months ago, you can consider the command <code>wlist report sm/5 months ago</code>.
-To avoid ambiguity, you are advised to specify the dates in the relaxed date format (e.g. <code>Sep 2019</code>).</p>
+<p>Deletes the template at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed template list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 </ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 10%;">
-<col style="width: 40%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-center valign-top">Start Month</th>
-<th class="tableblock halign-center valign-top">End Month</th>
-<th class="tableblock halign-left valign-top">Start Month Used</th>
-<th class="tableblock halign-left valign-top">End Month Used</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The start month follows that specified by the user, or the earliest record found in our waste archive,
-whichever is later.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The end month follows that specified by the user, or the current month, whichever is earlier.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The start month follows that specified by the user, or the earliest record found in our waste archive,
-whichever is later.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The end month will be one year from the specified start month or the current month, whichever is earlier.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The start month will be one year before the end month specified, or the earliest month found in our waste archive,
-whichever is later.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The end month follows that specified by the user, or the current month, whichever is earlier.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The start month would be one year ago from the current month, or the earliest month found in your waste archive,
-whichever is later.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The end month would be the current month.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>To illustrate an example, suppose we have a waste archive with waste data from the months of Oct 2018, Nov 2018, &#8230;&#8203;,
-Oct 2019 (the current month). We specify Aug 2018 as a start month and Jun 2019 as an end month, as
-shown below:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/WasteReportTimeFrame.png" alt="WasteReportTimeFrame">
-</div>
-</div>
-<div class="paragraph">
-<p>iFridge will generate the report using all available data within the time period, which will be
-Oct 2018 to Jun 2019, highlighted in the yellow box.</p>
 </div>
 </div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="paragraph">
-<p>Suppose we have a waste archive with data from Oct 2018 to Oct 2019 (current month).</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>wlist report sm/Mar 2019</code><br>
-Generates a waste report from Mar 2019 to the current month of Oct 2019.</p>
-</li>
-<li>
-<p><code>wlist report sm/Mar 2019 em/Sep 2019</code><br>
-Generates a waste report from Mar 2019 to Sep 2019</p>
-</li>
-<li>
-<p><code>wlist report sm/Mar 2018</code><br>
-Generates a waste report from Oct 2018 to Mar 2019 (one year from Mar 2018)</p>
-</li>
-<li>
-<p><code>wlist report sm/5 months ago</code><br>
-Generates a waste report from May 2019 to Oct 2019 (current month)</p>
+<p><code>tlist delete 1</code>
+Deletes the 1st template in the template list</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>The allowable date formats can be found in the Natty library documentation.</p>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Using the waste report</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>After a successful waste report command, there will be 3 charts displayed in different tabs, one for each of the following:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Weight of food wasted (in kg) across the time frame</p>
-</li>
-<li>
-<p>Volume of food wasted (in litres) across the time frame</p>
-</li>
-<li>
-<p>Quantity of food wasted (in units) across the time frame</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Our charts are interactive, you can get more details about your food wastage by interacting with our charts.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Zooming on the chart: If you want to zoom in on a specific region of the graph, you can use your mouse to click and drag on the
-preferred window.</p>
-</li>
-<li>
-<p>To retrieve more specific details on the food wastage for a particular month, you can choose to:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>click on the particular point in the chart, which will bring up the grid guidelines, or</p>
-</li>
-<li>
-<p>click on the month name in the horizontal axis, which will zoom in on the exact wastage details for that particular month.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Returning to the original window: You can easily return to the original window by clicking on the title of the chart.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Below is an example of a waste report with the chart on food wastage in kg:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/WasteReportWindow.png" alt="WasteReportWindow">
-</div>
-</div>
-<div class="paragraph">
-<p><em>By clicking on the data point which lies on "March 2019", we can see that our food wastage for Mar 2019 is around 0.45kg.</em></p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="obtain-feedback-based-on-current-food-wastage-code-wlist-feedback-code"><a class="link" href="#obtain-feedback-based-on-current-food-wastage-code-wlist-feedback-code">Obtain feedback based on current food wastage: <code>wlist feedback</code></a></h4>
+<h4 id="clear-template-list-code-tlist-clear-code"><a class="link" href="#clear-template-list-code-tlist-clear-code">Clear template list: <code>tlist clear</code></a></h4>
 <div class="paragraph">
-<p>Format: <code>wlist feedback</code></p>
+<p>Clears all template entries from the template list.<br>
+Format: <code>tlist clear</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="show-list-of-all-templates-code-tlist-list-code"><a class="link" href="#show-list-of-all-templates-code-tlist-list-code">Show list of all templates: <code>tlist list</code></a></h4>
+<div class="paragraph">
+<p>Shows all entries in the template list<br>
+Format: <code>tlist list</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="template-management"><a class="link" href="#template-management">Template Management</a></h3>
+<div class="sect3">
+<h4 id="add-new-grocery-item-code-tlist-template-add-code"><a class="link" href="#add-new-grocery-item-code-tlist-template-add-code">Add new grocery item: <code>tlist template add</code></a></h4>
+<div class="paragraph">
+<p>Adds an item into a specified template.<br>
+Format: <code>tlist template add TEMPLATEINDEX n/NAME a/AMOUNT</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="paragraph">
-<p>Shows the current month’s wastage statistics:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>How many kg, litres, and units wasted so far</p>
+<p>Adds item into the template under the specified <code>INDEX</code> as shown in the displayed template list.</p>
 </li>
 <li>
-<p>Predicted wastage for the month</p>
-</li>
-<li>
-<p>Feedback on how user is managing food waste compared to the average food waste management across the past year</p>
+<p>Both name and amount fields must be filled in correctly.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Our prediction algorithm:<br>
-We first interpolate your current month&#8217;s waste statistics to arrive at an estimate. Following which,
-we take a weighted average of your waste statistics across the past couple of months to provide you with
-a more reliable prediction.</p>
+<p>Examples:</p>
 </div>
-<div class="paragraph">
-<p>As with any other application, our prediction algorithm will be more accurate with more frequent usage.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">Command Summary</a></h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Command</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a grocery item to the grocery list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Shows a list of grocery items in the grocery list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist delete INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the specified grocery item from the grocery list when it is done being used. If the amount of the food item left &gt; 0, the item will be moved to the waste list.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist use INDEX a/AMOUNT</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reduces the amount left of a grocery item by the specified amount</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [t/TAG]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Edits an existing item in the grocery list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist sort by/TYPE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sorts the grocery list based on the type of sorting</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glist find KEYWORD [MORE_KEYWORDS]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Finds items whose name or tag contain any of the given keywords.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wlist list [m/MONTH_OF_YEAR]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Shows a list of the food items which have been wasted in the specified month</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wlist report [sm/START_MONTH] [em/END_MONTH]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Shows a charted report detailing your food wastage statistics across a time frame</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wlist feedback</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Obtain feedback based on current food wastage</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist add n/TEMPLATENAME</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new template into template list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist edit INDEX n/TEMPLATENAME</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Updates name of specified template in template list.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist delete INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes a specified template from the template list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist clear</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Clears all template entries from the template list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Shows all entries in the template list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist template add TEMPLATEINDEX [n/NAME] [a/AMOUNT]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds an item into a specified template</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist n/TEMPLATENAME edit INDEX [f/FOODITEM] [a/AMOUNT]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Edits a specified item in the specified template TEMPLATENAME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist template delete TEMPLATEINDEX i/ITEMINDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the specified item from the specified template</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tlist template list TEMPLATEINDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Shows all entries in the specified template</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist add f/FOOD_ITEM a/AMOUNT</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new item to the shopping list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist addTemp INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds all template items that are not currently found in the grocery list into the shopping list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist edit INDEX [f/FOODNAME] [a/AMOUNT]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Edits the name of a specified item in a shopping list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist delete INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Delete specified item from shopping list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist urgent INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Marks the specified shopping item as 'urgent!'</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lists out all items in the shopping list with bought items first</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist bought INDEX e/EXPIRYDATE a/AMOUNT</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Marks an item as bought and assigns a bought status to the ShoppingItem and expiry date and amount to corresponding BoughtItem</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist mergebought</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds all items marked as ‘bought’ to the grocery list</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slist addTemp TEMPLATEINDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generates a shopping list from all missing grocery items in the template</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remDefault r/NUMBER_OF_DAYS</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display list with all food expiring within n days</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exits the program</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Displays help</p></td>
-</tr>
-</tbody>
-</table>
-<div class="sect2">
-<h3 id="waste-list"><a class="link" href="#waste-list">Waste List</a></h3>
-<div class="sect3">
-<h4 id="view-most-commonly-wasted-food-items"><a class="link" href="#view-most-commonly-wasted-food-items">View most commonly wasted food items</a></h4>
-<div class="paragraph">
-<p>Generates a word cloud based on user&#8217;s most commonly wasted food.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist template add 1 n/Milk a/1L</code></p>
+</li>
+<li>
+<p><code>tlist template add 2 n/Eggs a/12units</code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="moving-all-expired-food-items-from-grocery-list-to-waste-list"><a class="link" href="#moving-all-expired-food-items-from-grocery-list-to-waste-list">Moving all expired food items from grocery list to waste list</a></h4>
+<h4 id="edit-item-name-code-tlist-template-edit-code"><a class="link" href="#edit-item-name-code-tlist-template-edit-code">Edit item name: <code>tlist template edit</code></a></h4>
 <div class="paragraph">
-<p>By default, every time the application is launched, iFridge helps you check which items
-are expired and automatically moves them into the waste list.</p>
+<p>Edits a specified item in the specified template <code>TEMPLATENAME</code>.<br>
+Format: <code>tlist template edit TEMPLATEINDEX i/ITEMINDEX [n/NAME] [a/AMOUNT]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the food item at the specified <code>ITEMINDEX</code> in template at specified TEMPLATEINDEX. The index refers to the index number shown in the displayed template. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>Amount must have units.</p>
+</li>
+<li>
+<p>Units in the amount field must match that of the item specified.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist template edit 1 i/1 n/Low-Fat Milk</code>
+Edits the name of the first food item in the first template to  <code>Low-Fat Milk</code></p>
+</li>
+<li>
+<p><code>tlist template edit 1 i/1 a/2L</code>
+Edits the amount of the first food item in the first template to 2 litres.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-food-item-code-tlist-template-delete-code"><a class="link" href="#delete-food-item-code-tlist-template-delete-code">Delete food item: <code>tlist template delete</code></a></h4>
+<div class="paragraph">
+<p>Deletes the specified item from the specified template.<br>
+Format: <code>tlist template delete TEMPLATEINDEX i/ITEMINDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the food item at the specified <code>ITEMINDEX</code>. The index refers to the index number shown in the displayed template. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist template delete 1 i/1</code>
+Deletes the first food item in the first template.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="shows-template-code-tlist-template-list-code"><a class="link" href="#shows-template-code-tlist-template-list-code">Shows template: <code>tlist template list</code></a></h4>
+<div class="paragraph">
+<p>Shows all entries in the specified template.<br>
+Format: <code>tlist template list TEMPLATEINDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>tlist template list 1</code>
+Shows all entries in the first template</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="undo-template-list-code-tlist-undo-code"><a class="link" href="#undo-template-list-code-tlist-undo-code">Undo Template List: <code>tlist undo</code></a></h4>
+<div class="paragraph">
+<p>Undo the template list and the corresponding template item list (if applicable).<br>
+Format: <code>tlist undo</code></p>
+</div>
+<div class="paragraph">
+<p>Undoing a template list will only display template list.
+Undoing a template item list will display which template is undone.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redo-template-list-code-tlist-redo-code"><a class="link" href="#redo-template-list-code-tlist-redo-code">Redo Template List: <code>tlist redo</code></a></h4>
+<div class="paragraph">
+<p>Redo the template list and the corresponding template item list (if applicable).<br>
+Format: <code>tlist redo</code></p>
+</div>
+<div class="paragraph">
+<p>Redoing a template list will only display template list.
+Redoing a template item list will display which template is redone.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generate-shopping-list-code-slist-addtemp-code"><a class="link" href="#generate-shopping-list-code-slist-addtemp-code">Generate shopping list: <code>slist addTemp</code></a></h4>
+<div class="paragraph">
+<p>Generates a shopping list from all missing grocery items in the template.
+Format: <code>slist addTemp [l/INDEX] &#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>At least one template name must be provided.</p>
+</li>
+<li>
+<p>In the case of multiple template lists, the amount of duplicate items will be summed up.</p>
+</li>
+<li>
+<p>In the case of the shopping list already containing food items, the amount of duplicate items will be summed up.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>slist addTemp l/Weekly Necessities l/Birthday Cake</code>
+All entries from the templates <code>Weekly Necessities</code> and <code>Birthday Cake</code> will be added into the shopping list.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -521,81 +423,174 @@ are expired and automatically moves them into the waste list.</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>We also kept the Developer Guide updated so that potential developers and enthusiast users could better understand the design and implementation of our app. To illustrate my contributions to the Developers' Guide, I have once again only included the more notable excerpts.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Below are some notable sections I contributed to the Developer Guide that showcase my ability to write technical documentation and the technical depth of my contributions to the project</em></p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="waste-report-feature"><a class="link" href="#waste-report-feature">Waste Report Feature</a></h3>
+<h3 id="edit-template-item-feature"><a class="link" href="#edit-template-item-feature">Edit Template Item Feature</a></h3>
+<div class="paragraph">
+<p>The edit template item mechanism is facilitated by <code>UniqueTemplateItems</code>, <code>TemplateList</code> and <code>TemplateToBeShown</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>TemplateList</code> is an observable list of <code>UniqueTemplateItems</code> while the UniqueTemplateItems contains an observable list
+of template items. The <code>TemplateToBeShown</code> is a instance of the <code>UniqueTemplateItems</code> that is used to show the current template
+that is visible on the user interface.</p>
+</div>
+<div class="paragraph">
+<p>To edit the individual templates stored in the <code>TemplateList</code>, the command retrieves the template as well as the item to be edited.
+Retrieving the existing item allows for retrieval of unchanged data field. The template item at the specified index will then be
+overwritten with a new edited TemplateItem.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, the <code>UniqueTemplateItems</code> object at the specified index will also be overwritten by a new <code>UniqueTemplateItems</code>
+containing the edited template item with unchanged template items already transferred into the new <code>UniqueTemplateItems</code> object.
+The model is updated with the new <code>TemplateList</code>, as well as the new <code>TemplateToBeShown</code>.</p>
+</div>
+<div class="paragraph">
+<p>The creation of new objects to override the previous is necessary as template items and templates are stored as immutable objects in the <code>UniqueTemplateItems</code>
+and <code>TemplateList</code> respectively, and therefore cannot be edited directly.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#getFilteredTemplateList()</code>&#8201;&#8212;&#8201;Gets an unmodifiable template list.</p>
+</li>
+<li>
+<p><code>Model#setTemplate()</code>&#8201;&#8212;&#8201;Replaces the previous template object with the new template object.</p>
+</li>
+<li>
+<p><code>Model#setShownTemplate()</code>&#8201;&#8212;&#8201;Replaces the previous templateToBeShown with the new template so that the edited template is visible in the UI.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#getFilteredTemplateList()</code>, <code>Model#setTemplate()</code>
+<code>Model#setShownTemplate()</code> and <code>Model#updateFilteredTemplateToBeShown()</code> respectively.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When the user launches the application for the first time. The <code>TemplateToBeShown</code> will be initialized however it will not
+be visible until a templateItemCommand is executed. This can be done using an AddTemplateItemCommand, a DeleteTemplateItemCommand,
+a ListTemplateItemCommand, or an EditTemplateItemCommand.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new command related to managing of template items:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/TemplateItemCommandUIActivityDiagram.png" alt="TemplateItemCommandUIActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the edit template item operation works for the logic component:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditTemplateItemSequenceDiagram2.png" alt="EditTemplateItemSequenceDiagram2">
+</div>
+</div>
+<div class="paragraph">
+<p>Due to lack of space, please refer to the below list for args1, args2, args3, args4 shown in the diagram above.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>args1: "tlist template edit 1 i/1 a/2units"</p>
+</li>
+<li>
+<p>args2: "template edit 1 i/1 a/2units"</p>
+</li>
+<li>
+<p>args3: "edit 1 i/1 a/2units"</p>
+</li>
+<li>
+<p>args4: "1 i/1 a/2units"</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code>,
+<code>EditTemplateItemCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the edit template item operation works for the model component:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditTemplateItemSequenceDiagram3.png" alt="EditTemplateItemSequenceDiagram3">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code>,
+<code>EditTemplateItemCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
-<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="paragraph">
-<p>Under <code>WasteReportCommand#execute</code>, when iterating through the months from the starting month to
-the ending month:</p>
+<p>Aspect: How edit command is parsed</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>We first retrieve the relevant <code>WasteList</code> for the month using <code>Model#getWasteListByMonth(WasteMonth)</code></p>
+<p>Alternative 1 (current choice): Create a separate parser just for template item management</p>
 </li>
 <li>
-<p>Thereafter, we obtain a <code>WasteStatistic</code> object, which contains the weight, volume and quantity of food wasted
-for the given month by calling <code>WasteList#getWasteStatistic</code>.</p>
+<p>Pros: Easy to implement. Parser structure follows the same structure as the model. More OOP.</p>
 </li>
 <li>
-<p>Collect the data by storing it in a <code>HashMap</code> indexed by the month (a <code>WasteMonth</code> object) with the corresponding
-<code>WasteStatistic</code> as the value.</p>
+<p>Cons: May be confusing to differentiate between TemplateItemParser and TemplateListParser.</p>
+</li>
+<li>
+<p>Alternative 2: The TemplateListParser is able to distinguish between template and template item management</p>
+</li>
+<li>
+<p>Pros: Less confusing as there is only one parser managing the template list.</p>
+</li>
+<li>
+<p>Cons: Implementation of the commands becomes more complicated. Less OOP.</p>
+</li>
+<li>
+<p>Alternative 3: The TemplateItemParser is at the same hierarchy as the TemplateListParser instead of inside.</p>
+</li>
+<li>
+<p>Pros: The user command can be shorter. E.g. "template edit &#8230;&#8203;" instead of "tlist template edit &#8230;&#8203;"</p>
+</li>
+<li>
+<p>Cons: Not as obvious to the user that both commands involve the same template list.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the waste report feature works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/WasteReportSequenceDiagram.png" alt="WasteReportSequenceDiagram">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/WasteReportSequenceDiagramRef.png" alt="WasteReportSequenceDiagramRef">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram shows what happens when the user enters a command to generate a waste report:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/WasteReportActivityDiagram.png" alt="WasteReportActivityDiagram">
-</div>
-</div>
-<div class="paragraph">
-<p>To see what constitutes a valid time frame, refer to our
-<a href="https://ay1920s1-cs2103-f10-2.github.io/main/UserGuide.html#displaying-food-wastage-statistics-code-wlist-report-code">user guide</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="possible-alternative-implementations"><a class="link" href="#possible-alternative-implementations">Possible Alternative Implementations</a></h4>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1</strong>
-Since the waste statistics for the previous months are unlikely to change, they can be stored externally and loaded
-upon launch of the application, instead of calculating every time the waste report command is executed.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Will improve the runtime of the application.</p>
-</li>
-<li>
-<p>Cons: Will take up more storage space.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>The following sequence diagram shows how the edit template item operation works for the logic component:</p>
 </div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 14:13:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 14:29:02 UTC</div></div></div></body></html>

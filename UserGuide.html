@@ -73,9 +73,8 @@
 <li><a href="#mark-item-as-bought-code-slist-bought-code">3.7.6. Mark item as 'bought’: <code>slist bought</code></a></li>
 <li><a href="#add-bought-items-code-slist-mergebought-code">3.7.7. Add bought items: <code>slist mergebought</code></a></li>
 <li><a href="#mark-shopping-item-as-urgent-code-slist-urgent-code">3.7.8. Mark shopping item as Urgent: <code>slist urgent</code></a></li>
-<li><a href="#generate-shopping-list-code-slist-addtemp-code">3.7.9. Generate shopping list: <code>slist addTemp</code></a></li>
-<li><a href="#undo-shopping-list-code-slist-undo-code">3.7.10. Undo Shopping List: <code>slist undo</code></a></li>
-<li><a href="#redo-shopping-list-code-slist-redo-code">3.7.11. Redo Shopping List: <code>slist redo</code></a></li>
+<li><a href="#undo-shopping-list-code-slist-undo-code">3.7.9. Undo Shopping List: <code>slist undo</code></a></li>
+<li><a href="#redo-shopping-list-code-slist-redo-code">3.7.10. Redo Shopping List: <code>slist redo</code></a></li>
 </ul>
 </li>
 <li><a href="#exiting-the-program-code-exit-code">3.8. Exiting the program : <code>exit</code></a></li>
@@ -983,14 +982,14 @@ Format: <code>tlist template add TEMPLATEINDEX n/NAME a/AMOUNT</code></p>
 <h4 id="edit-item-name-code-tlist-template-edit-code"><a class="link" href="#edit-item-name-code-tlist-template-edit-code">3.6.2. Edit item name: <code>tlist template edit</code></a></h4>
 <div class="paragraph">
 <p>Edits a specified item in the specified template <code>TEMPLATENAME</code>.<br>
-Format: <code>tlist n/TEMPLATENAME edit INDEX i/ITEMINDEX [n/NAME] [a/AMOUNT]</code></p>
+Format: <code>tlist template edit TEMPLATEINDEX i/ITEMINDEX [n/NAME] [a/AMOUNT]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the food item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed template. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Edits the food item at the specified <code>ITEMINDEX</code> in template at specified TEMPLATEINDEX. The index refers to the index number shown in the displayed template. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
 <p>At least one of the optional fields must be provided.</p>
@@ -999,7 +998,10 @@ Format: <code>tlist n/TEMPLATENAME edit INDEX i/ITEMINDEX [n/NAME] [a/AMOUNT]</c
 <p>Existing values will be updated to the input values.</p>
 </li>
 <li>
-<p>Units in the amount field must match that of the item specified</p>
+<p>Amount must have units.</p>
+</li>
+<li>
+<p>Units in the amount field must match that of the item specified.</p>
 </li>
 </ul>
 </div>
@@ -1032,7 +1034,7 @@ Format: <code>tlist template delete TEMPLATEINDEX i/ITEMINDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the food item at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed template. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Deletes the food item at the specified <code>ITEMINDEX</code>. The index refers to the index number shown in the displayed template. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -1045,7 +1047,7 @@ Format: <code>tlist template delete TEMPLATEINDEX i/ITEMINDEX</code></p>
 <ul>
 <li>
 <p><code>tlist template delete 1 i/1</code>
-Deletes the first food item in the first template</p>
+Deletes the first food item in the first template.</p>
 </li>
 </ul>
 </div>
@@ -1357,13 +1359,11 @@ Items in the shopping list are sorted by urgent status first, alphabetical order
 <ul>
 <li>
 <p><code>slist urgent 1</code>
-Marks the shopping item at <code>INDEX</code> 1 as urgent. That item is tagged as 'urgent' and moves to the top of the shopping list.</p>
+Marks the shopping item at <code>INDEX</code> 1 as urgent. That item is tagged as 'urgent' and moves to the top of the shopping list.
+==== Generate shopping list: <code>slist addTemp</code></p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="generate-shopping-list-code-slist-addtemp-code"><a class="link" href="#generate-shopping-list-code-slist-addtemp-code">3.7.9. Generate shopping list: <code>slist addTemp</code></a></h4>
 <div class="paragraph">
 <p>Generates a shopping list from all missing grocery items in the template.
 Format: <code>slist addTemp [l/INDEX] &#8230;&#8203;</code></p>
@@ -1398,7 +1398,7 @@ All entries from the templates <code>Weekly Necessities</code> and <code>Birthda
 </div>
 </div>
 <div class="sect3">
-<h4 id="undo-shopping-list-code-slist-undo-code"><a class="link" href="#undo-shopping-list-code-slist-undo-code">3.7.10. Undo Shopping List: <code>slist undo</code></a></h4>
+<h4 id="undo-shopping-list-code-slist-undo-code"><a class="link" href="#undo-shopping-list-code-slist-undo-code">3.7.9. Undo Shopping List: <code>slist undo</code></a></h4>
 <div class="paragraph">
 <p>Undo the shopping list.<br>
 Format: <code>slist undo</code></p>
@@ -1408,7 +1408,7 @@ Format: <code>slist undo</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="redo-shopping-list-code-slist-redo-code"><a class="link" href="#redo-shopping-list-code-slist-redo-code">3.7.11. Redo Shopping List: <code>slist redo</code></a></h4>
+<h4 id="redo-shopping-list-code-slist-redo-code"><a class="link" href="#redo-shopping-list-code-slist-redo-code">3.7.10. Redo Shopping List: <code>slist redo</code></a></h4>
 <div class="paragraph">
 <p>Redo the shopping list.<br>
 Format: <code>slist redo</code></p>
@@ -1613,4 +1613,4 @@ are expired and automatically moves them into the waste list.</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 14:13:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 14:29:02 UTC</div></div></div></body></html>
