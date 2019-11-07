@@ -25,13 +25,17 @@
 <li><a href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></li>
 <li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
 <li><a href="#reminder-default-feature">3.3. Reminder Default Feature</a></li>
-<li><a href="#waste-report-feature">3.4. Waste Report Feature</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
-<li><a href="#use-grocery-feature">3.7. Use Grocery Feature</a></li>
-<li><a href="#wastelist-feature">3.8. WasteList Feature</a></li>
-<li><a href="#edit-template-item-feature">3.9. Edit Template Item feature</a></li>
-<li><a href="#mergebought-feature">3.10. MergeBought Feature</a></li>
+<li><a href="#general-undo-redo-feature">3.4. General Undo/Redo Feature</a></li>
+<li><a href="#grocery-undo-redo-feature">3.5. Grocery Undo/Redo Feature</a></li>
+<li><a href="#shopping-undo-redo-feature">3.6. Shopping Undo/Redo Feature</a></li>
+<li><a href="#template-undo-redo-feature">3.7. Template Undo/Redo Feature</a></li>
+<li><a href="#waste-report-feature">3.8. Waste Report Feature</a></li>
+<li><a href="#logging">3.9. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
+<li><a href="#use-grocery-feature">3.11. Use Grocery Feature</a></li>
+<li><a href="#wastelist-feature">3.12. WasteList Feature</a></li>
+<li><a href="#edit-template-item-feature">3.13. Edit Template Item feature</a></li>
+<li><a href="#mergebought-feature">3.14. MergeBought Feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -560,6 +564,11 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="sect3">
 <h4 id="implementation-2"><a class="link" href="#implementation-2">3.3.1. Implementation</a></h4>
 <div class="paragraph">
+<p>Color coding for grocery list is based on the default number of days set in the iFridge settings in the user prefs.
+Changing the default reminder number of days will update the color coding in the grocery list accordingly. It will also
+be saved when the app is closed and used again when the app is relaunched.</p>
+</div>
+<div class="paragraph">
 <p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("remDefault r/3")</code> API call.</p>
 </div>
 <div class="imageblock">
@@ -571,9 +580,139 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="waste-report-feature"><a class="link" href="#waste-report-feature">3.4. Waste Report Feature</a></h3>
+<h3 id="general-undo-redo-feature"><a class="link" href="#general-undo-redo-feature">3.4. General Undo/Redo Feature</a></h3>
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">3.4.1. Implementation</a></h4>
+<div class="paragraph">
+<p>There are 3 types of undo/redo feature, glist undo/redo for grocery list, slist undo/redo for shopping list,
+and tlist undo/redo for template list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.4.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p>Aspect: How undo/redo is implemented</p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice)</strong>: Create undo/redo separately for different lists.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More flexibility for user in choosing which list to undo.</p>
+</li>
+<li>
+<p>Cons: Does not support commands which connects between the different lists which has an undo/redo feature of its own
+(eg. mergebought command which links shopping list and grocery list cannot be undone, as both shopping list and grocery list
+have their own undo/redo feature and complications may occur due to the interdependency between the different lists)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2</strong>: Implement undo/redo universally so undo/redo will undo/redo any type of the last command executed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Supports undoing/redoing commands which connects between different lists as there will be no complications arising
+from the interdependency of the list.</p>
+</li>
+<li>
+<p>Cons: Less flexibility to choose which list to undo.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="grocery-undo-redo-feature"><a class="link" href="#grocery-undo-redo-feature">3.5. Grocery Undo/Redo Feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.5.1. Implementation</a></h4>
+<div class="paragraph">
+<p>Versioned Grocery List extends Grocery List and contains different states of grocery list.
+Versioned Waste List extends Waste List and contains different states of waste list.
+It supports any kinds of grocery command which modifies the content of the grocery list. Since the delete
+grocery command modifies both grocery list and waste list, each grocery command will call
+<code>Model#commitGroceryList</code> and <code>Model#commitWasteList</code> so that undoing/redoing a grocery delete command will update both
+grocery list and waste list, while the other commands will only modify the grocery list.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shopping-undo-redo-feature"><a class="link" href="#shopping-undo-redo-feature">3.6. Shopping Undo/Redo Feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-5"><a class="link" href="#implementation-5">3.6.1. Implementation</a></h4>
+<div class="paragraph">
+<p>Versioned Shopping List extends Shopping List and contains different states of shopping list.
+Versioned Bought List extends Grocery List and contains different states of bought list.
+It supports any kinds of shopping command which modifies the content of the shopping list except for mergebought command.
+Since the bought shopping command modifies both shopping list and bought list, each shopping command excluding mergebought command
+will call <code>Model#commitShoppingList</code> and <code>Model#commitBoughtList</code> so that undoing/redoing a bought shopping command will update both
+shopping list and bought list, while the other commands will only modify the shopping list.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="template-undo-redo-feature"><a class="link" href="#template-undo-redo-feature">3.7. Template Undo/Redo Feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-6"><a class="link" href="#implementation-6">3.7.1. Implementation</a></h4>
+<div class="paragraph">
+<p>Versioned Template List extends Template List and contains different states of template list, previous templates, new templates, and index list.
+It supports template list command undo/redo, and template item command undo/redo. Each template command will call <code>Model#commitTemplateList</code>
+which updates the corresponding lists in the versioned template list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoTemplateActivityDiagram.png" alt="UndoTemplateActivityDiagram">
+</div>
+<div class="title">Figure 10. The following activity diagram shows what happens when the user enters an undo template command</div>
+</div>
+<div class="paragraph">
+<p>When a template list command is undone/redone, the user interface will update the template list panel and clear the template item panel.
+When a template item command is undone/redone, the user interface will update the template item panel with the corresponding updated template
+from the prevTemplate/newTemplate list respectively.
+The index list is used to determine whether a template list command or a template item command is being undone/redone.
+If the current index is -1, the current state pointer is pointing to a template list command, else, it is pointing to a template item command.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.7.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p>Aspect: How template undo/redo is implemented</p>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 1 (current choice)</strong>: Template undo/redo feature covers both template list command and template item command</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Prevents issues surfacing from interdependency between template list and template item command</p>
+</li>
+<li>
+<p>Cons: Less flexibility for users in choosing to undo/redo which list</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Alternative 2</strong>: Create undo/redo separately for template list command and template item command</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More flexibility as users can choose which list to undo/redo</p>
+</li>
+<li>
+<p>Cons: Harder to implement as we need to check for interdependency between the two list and how it affects the other list' state
+before performing the corresponding undo/redo</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="waste-report-feature"><a class="link" href="#waste-report-feature">3.8. Waste Report Feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-7"><a class="link" href="#implementation-7">3.8.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Under <code>WasteReportCommand#execute</code>, when iterating through the months from the starting month to
 the ending month:</p>
@@ -620,7 +759,7 @@ for the given month by calling <code>WasteList#getWasteStatistic</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="possible-alternative-implementations"><a class="link" href="#possible-alternative-implementations">3.4.2. Possible Alternative Implementations</a></h4>
+<h4 id="possible-alternative-implementations"><a class="link" href="#possible-alternative-implementations">3.8.2. Possible Alternative Implementations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -643,14 +782,14 @@ upon launch of the application, instead of calculating every time the waste repo
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -681,15 +820,15 @@ upon launch of the application, instead of calculating every time the waste repo
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-grocery-feature"><a class="link" href="#use-grocery-feature">3.7. Use Grocery Feature</a></h3>
+<h3 id="use-grocery-feature"><a class="link" href="#use-grocery-feature">3.11. Use Grocery Feature</a></h3>
 <div class="sect3">
-<h4 id="implementations"><a class="link" href="#implementations">3.7.1. Implementations</a></h4>
+<h4 id="implementations"><a class="link" href="#implementations">3.11.1. Implementations</a></h4>
 <div class="paragraph">
 <p>The user is able to use specific item that she has. This can be done with the <code>glist use</code> command.<br></p>
 </div>
@@ -720,7 +859,7 @@ upon launch of the application, instead of calculating every time the waste repo
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.11.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-reducing-the-amount"><a class="link" href="#aspect-reducing-the-amount">Aspect: Reducing the amount</a></h5>
 <table class="tableblock frame-all grid-all spread">
@@ -878,11 +1017,11 @@ upon launch of the application, instead of calculating every time the waste repo
 </div>
 </div>
 <div class="sect2">
-<h3 id="wastelist-feature"><a class="link" href="#wastelist-feature">3.8. WasteList Feature</a></h3>
+<h3 id="wastelist-feature"><a class="link" href="#wastelist-feature">3.12. WasteList Feature</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="edit-template-item-feature"><a class="link" href="#edit-template-item-feature">3.9. Edit Template Item feature</a></h3>
+<h3 id="edit-template-item-feature"><a class="link" href="#edit-template-item-feature">3.13. Edit Template Item feature</a></h3>
 <div class="paragraph">
 <p>The edit template item mechanism is facilitated by <code>UniqueTemplateItems</code>, <code>TemplateList</code> and <code>TemplateToBeShown</code>.</p>
 </div>
@@ -1006,7 +1145,7 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 </table>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.9.1. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.13.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p>Aspect: How edit command is parsed</p>
 </div>
@@ -1047,7 +1186,7 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="mergebought-feature"><a class="link" href="#mergebought-feature">3.10. MergeBought Feature</a></h3>
+<h3 id="mergebought-feature"><a class="link" href="#mergebought-feature">3.14. MergeBought Feature</a></h3>
 
 </div>
 </div>
@@ -1807,4 +1946,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-04 15:04:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 07:15:59 UTC</div></div></div></body></html>
