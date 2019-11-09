@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>iFridge - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>iFridge - Developer Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">iFridge</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103-F10-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>iFridge - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
@@ -49,7 +49,7 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
+<li><a href="#waste-list-manual-testing">G.2. Waste List Manual Testing</a></li>
 <li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
@@ -2014,8 +2014,9 @@ These instructions only provide a starting point for testers to work on; testers
 <p>Download the jar file and copy into an empty folder</p>
 </li>
 <li>
-<p>Double-click the jar file<br>
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
+<p>Double-click the jar file (for Mac users, navigate to the folder in terminal and run it using the command <code>java -jar iFridge.jar</code>)<br>
+Expected: Shows the GUI with a set of sample grocery list, template list, waste list and shopping list items.
+The window size may not be optimum.</p>
 </li>
 </ol>
 </div>
@@ -2036,40 +2037,104 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
+<h3 id="waste-list-manual-testing"><a class="link" href="#waste-list-manual-testing">G.2. Waste List Manual Testing</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Moving an item into the waste list</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. The item must exist in the grocery list, and has not been fully consumed (i.e. amount = 0).</p>
 </li>
 <li>
-<p>Test case: <code>delete 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+<p>Test case: <code>glist delete 1</code><br>
+Expected: First grocery item is deleted from the list. Details of the removed grocery item shown in the status message.
+If item has been fully consumed, it will be permanently removed from iFridge.</p>
+</li>
+</ol>
+</div>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+<p>Listing out the waste list for a particular month</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Waste list must exist in waste archive.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
-Expected: Similar to previous.</p>
+<p>Test case: <code>wlist list</code><br>
+Expected: The tab for the waste list is shown and is updated to reflect all waste items for the current month.</p>
+</li>
+<li>
+<p>Test case: <code>wlist list m/sep 2019</code><br>
+Expected: The tab for the waste list is shown and is updated to reflect all waste items for the month of September 2019, if such a waste list exists in
+the waste archive.</p>
+</li>
+<li>
+<p>Test case: <code>wlist list m/last month</code><br>
+Expected: The tab for the waste list is shown and is updated to reflect all waste items for the last month, if such a waste list exists in
+the waste archive.</p>
+</li>
+<li>
+<p>Test case: <code>wlist list m/invalid</code><br>
+Expected: Error message for invalid command displayed.</p>
+</li>
+<li>
+<p>Other invalid test cases: <code>wlist list m/Decemer 2019</code>. More details on valid or invalid date formats can be found in our user guide.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Obtaining predicted food wastage for the current month</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>wlist feedback</code><br>
+Expected: Message box displays the current and predicted food wastage.</p>
+</li>
+<li>
+<p>You are free to modify the json file <code>wastearchive.json</code> to see how our feedback feature performs differently.
+The estimated food wastage is predicted by taking the weighted average of waste statistics using (at most) the four most recent waste lists.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Generating a waste report</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>wlist report</code><br>
+Expected: iFridge will display a window with 3 charts detailing food wastage statistics. It will attempt to generate a waste report
+from one year ago till the current month (e.g. if the current month is Nov 2019, it will attempt to generate a report from Nov 2018 to Nov 2019)
+with sufficient data. If there is insufficient data, it will only display the records starting from the earliest month found in iFridge&#8217;s waste archive.</p>
+</li>
+<li>
+<p>Test case: <code>wlist report sm/5 months ago</code><br>
+Expected: iFridge will attempt to generate a report using data from 5 months ago to the current month.<br>
+We have a detailed section in our <a href="https://ay1920s1-cs2103-f10-2.github.io/main/UserGuide.html#displaying-food-wastage-statistics-code-wlist-report-code">User Guide</a>
+on the specifications of the starting and ending months along with their expected behaviour</p>
+</li>
+<li>
+<p>Test case: <code>wlist report sm/next month</code><br>
+Expected: Error message displayed suggesting that the start month cannot be later than the current month.</p>
+</li>
+<li>
+<p>Test case: <code>wlist report em/Sep 1990</code><br>
+Expected: Assuming we have no data for the month of Sep 1990, an error message will be displayed suggesting that there is no valid data in the time frame.
+It also indicates to the user what the earliest record in the waste archive is.</p>
+</li>
+<li>
+<p>Other invalid test cases: <code>wlist report sm/Oct 2019 em/Jul 2019</code>, <code>wlist report sm/in 12 weeks</code></p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
 <div class="sect2">
@@ -2077,11 +2142,14 @@ Expected: Similar to previous.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Dealing with missing/corrupted data files</p>
+<p>Dealing with missing/corrupted json files</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+<p>In the event that no json file is found in the data folder for a specific list, our app will initialise with some sample data for that particular list.</p>
+</li>
+<li>
+<p>If a corrupted file is found in the data folder for a specific list, a new file will be created.</p>
 </li>
 </ol>
 </div>
@@ -2093,4 +2161,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 13:36:39 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 16:00:04 UTC</div></div></div></body></html>
