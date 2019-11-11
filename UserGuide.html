@@ -175,6 +175,26 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
+<p><strong>Item types</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>There are two types of items in this application: grocery item (which is a concrete item that you own) and food item (which is an item you think you would like to own in the future).</p>
+</li>
+<li>
+<p>A grocery item is like a purchased/owned item. Thus, it must have a name, an expiry date, and amount. A grocery item can have one or more tags depending on preferences.</p>
+</li>
+<li>
+<p>A food item must have a name and amount. A food item cannot have any expiry date and tag. Food item is usually used to arrange for shopping or template in this application.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
 <p><strong>Command Format</strong></p>
 </div>
 <div class="ulist">
@@ -198,7 +218,35 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 </div>
-<div class="exampleblock">
+<div id="same-name" class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>About the Name Parameter</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name is considered the same if they match exactly while ignoring case sensitivity. For example, <code>Chicken</code> is the same as <code>Chicken</code> and <code>chicKEN</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="same-tag" class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>About the Tag Parameter</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tag is considered the same if they match exactly considering case sensitivity. For example, <code>Chicken</code> is the same as <code>Chicken</code> but not <code>chiCKEN</code>,</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="amount-parameter" class="exampleblock">
 <div class="content">
 <div class="paragraph">
 <p><strong>About the Amount Parameter</strong></p>
@@ -217,10 +265,10 @@ ml, L, oz, lbs, kg, g, units.</p>
 <p><strong>Volume:</strong> ml, L</p>
 </li>
 <li>
-<p><strong>Quantity:</strong> units</p>
+<p><strong>Weight:</strong> g, kg, oz, lbs</p>
 </li>
 <li>
-<p><strong>Weight:</strong> g, kg, oz, lbs</p>
+<p><strong>Quantity:</strong> units</p>
 </li>
 </ul>
 </div>
@@ -262,6 +310,12 @@ ml, L, oz, lbs, kg, g, units.</p>
 </table>
 <div class="ulist">
 <ul>
+<li>
+<p>The amount displayed for each item is rounded off to 4 decimal points to provide a reasonable level of precision.</p>
+</li>
+<li>
+<p>A certain minimum value is imposed on the <code>Amount</code> class (0.1ml for Volume, 0.1kg for Weight, and 0.1units for Quantity) to ensure consistency.</p>
+</li>
 <li>
 <p>When adding or editing items, the system will only allow items with similar names (checking is non-case-sensitive) to have similar unit types. However,
 the adding of items with conflicting unit types will not be allowed.</p>
@@ -324,9 +378,6 @@ This command cannot be undone/redone.</p>
 </div>
 <div class="sect2">
 <h3 id="grocery-list-management"><a class="link" href="#grocery-list-management">3.3. Grocery List Management</a></h3>
-<div class="paragraph">
-<p>The grocery list is the</p>
-</div>
 <div class="sect3">
 <h4 id="adding-a-food-item-code-glist-add-code"><a class="link" href="#adding-a-food-item-code-glist-add-code">3.3.1. Adding a food item: <code>glist add</code></a></h4>
 <div class="paragraph">
@@ -341,7 +392,7 @@ Format: <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p>
 <p><code>e/EXPIRY_DATE</code> must follow the format <code>dd/MM/yyyy</code>.</p>
 </li>
 <li>
-<p><code>a/AMOUNT</code> must have a magnitude i.e. measurable quantity. Magnitude and unit can be separated by a space.</p>
+<p><code>a/AMOUNT</code> must have a magnitude i.e. measurable quantity and a unit. Magnitude and unit can be separated by spaces. Refer <a href="#amount-parameter">here</a> for more info.</p>
 </li>
 <li>
 <p>There may be more than one tag field.</p>
@@ -350,10 +401,10 @@ Format: <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p>
 <p>The input fields can be in any order.</p>
 </li>
 <li>
-<p>Item with <strong>either same name or expiry date</strong> as the existing ones can be added.</p>
+<p>Item with <strong>either <a href="#same-name">same name</a> or expiry date</strong> as the existing ones can be added.</p>
 </li>
 <li>
-<p>Items with <strong>same name and expiry date</strong> as the existing ones cannot be added.</p>
+<p>Item with <strong>same name and expiry date</strong> as the existing ones cannot be added.</p>
 </li>
 </ul>
 </div>
@@ -369,8 +420,8 @@ Format: <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p>
 Add Fuji apples of quantity 10 units, tagged as "healthy" and expiring on 30 October 2019.</p>
 </li>
 <li>
-<p><code>glist add n/salad a/3 e/25/09/2019</code><br>
-Add salad of quantity 3, untagged and expiring on 25 September 2019.</p>
+<p><code>glist add n/salad a/3units e/25/09/2019</code><br>
+Add salad of quantity 3 units, untagged and expiring on 25 September 2019.</p>
 </li>
 <li>
 <p><code>glist add n/tea a/200 ml e/18/10/2019 t/fresh t/drink</code><br>
@@ -390,7 +441,7 @@ Format: <code>glist list</code></p>
 <h4 id="deleting-a-grocery-item-code-glist-delete-code"><a class="link" href="#deleting-a-grocery-item-code-glist-delete-code">3.3.3. Deleting a grocery item: <code>glist delete</code></a></h4>
 <div class="paragraph">
 <p>Deletes the specified grocery item from the grocery list when it is done being used.
-If the amount of the food item left &gt; 0, the item will be moved to the waste list.<br>
+If the grocery item is not completely used up when deleted (i.e. <code>amount</code> &gt; 0), the item will be moved to the waste list.<br>
 Format: <code>glist delete INDEX</code></p>
 </div>
 </div>
@@ -405,36 +456,10 @@ Format: <code>glist use INDEX a/AMOUNT</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>The system only recognises metric units. e.g. kilogram, liter. The system does not support unrecognised units such as tablespoon (not precise), and pint (not a metric unit).</p>
+<p>The amount left of a grocery item must be more than or equal to the specified amount to use.</p>
 </li>
-<li>
-<p>Only the units in the following unit categories are supported:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Weight</code>: <code>kg</code>, <code>g</code>, <code>oz</code>, <code>lbs</code></p>
-</li>
-<li>
-<p><code>Volume</code>: <code>L</code>, <code>ml</code></p>
-</li>
-<li>
-<p><code>Quantity</code>: <code>units</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Whitespace between magnitude and unit is allowed.</p>
-</li>
-<li>
-<p>Cross conversion between units of the same categories is supported.</p>
-<div class="ulist">
-<ul>
 <li>
 <p>If the unit of input amount is different from the unit of item, the resultant amount would follow the unit of the original item. e.g. If an item of <code>1kg</code> is used by <code>300g</code>, it would become <code>0.7kg</code> and not <code>700g</code>.</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -470,7 +495,7 @@ Format: <code>glist edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [t/TAG]</code></p>
 <p>Edits an item at the specified <code>INDEX</code>. The index refers to the number shown in the displayed list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>At least one of the optional field must be provided.</p>
+<p>At least one of the optional fields must be provided. At least one of the provided fields must be different from the original item&#8217;s field.</p>
 </li>
 <li>
 <p>Amount cannot be edited, but can only be modified through <code>use</code>.</p>
@@ -483,6 +508,13 @@ Format: <code>glist edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [t/TAG]</code></p>
 </li>
 <li>
 <p>You can remove all the item&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+<li>
+<p><strong>As the grocery list does not allow duplicates (items with <a href="#same-name">same name</a> and expiry date), any attempt of edit to achieve duplication is not allowed and would result in an error.</strong></p>
+</li>
+<li>
+<p><strong>User is encouraged to practise discretion when editing an item as iFridge is unable to recognise items based on its name and compare between the name and amount of an item.</strong>
+For example, if an item named <code>Milk</code> with amount <code>2L</code> is edited to have the name <code>Beef</code>, iFridge would allow the edit, even though <code>Beef</code> with amount <code>2L</code> does not sound logical.</p>
 </li>
 </ul>
 </div>
@@ -521,10 +553,10 @@ Format: <code>glist sort by/TYPE</code><br></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Alphabetical: Sort the grocery list in ascending alphabetical order</p>
+<p><code>alphabetical</code>: Sort the grocery list based on the item&#8217;s name in ascending alphabetical order</p>
 </li>
 <li>
-<p>Expiry date: Sort the grocery list in ascending expiry date. i.e. from oldest to newest.</p>
+<p><code>expiry</code>: Sort the grocery list in ascending expiry date. i.e. from oldest to newest.</p>
 </li>
 </ul>
 </div>
@@ -1634,4 +1666,4 @@ are expired and gives you an option to move them to your waste list.</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:02:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 04:44:33 UTC</div></div></div></body></html>

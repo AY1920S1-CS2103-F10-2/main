@@ -10,7 +10,8 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>iFridge is a desktop grocery management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has a lot of code.</p>
+<p>iFridge is a desktop grocery management application to encourage home cooks to manage their food waste. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java, and has about 20kLoC.</p>
 </div>
 </div>
 </div>
@@ -24,22 +25,28 @@
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to manage grocery items using the commands provided in the user guide.</p>
+<p>What it does: The grocery list management allows the user to keep track of their grocery items with ease.</p>
 </li>
 <li>
-<p>Justification: The grocery list management is the backbone of the app as grocery items management is needed to support management of other lists (waste list, template list and shopping list). In addition, the grocery list is likely to be the most frequented list by the user.</p>
+<p>Justification: Fridge management is a difficult process as it is hard to keep track of all the food items in the fridge and consume them before they expire.
+iFridge&#8217;s grocery list solves the problem by allowing the user to key in the data of the food items.<br></p>
+<div class="paragraph">
+<p>The list supports basic features such as <code>glist add</code> and <code>glist delete</code> as well as other complementing features such as <code>glist sort</code> and <code>glist find</code>.
+The grocery list management is the backbone of the app as grocery items management is needed to support management of other lists (waste list, template list and shopping list).
+In addition, the grocery list is likely to be the most frequented list by the user.</p>
+</div>
 </li>
 <li>
-<p>Highlights: This enhancement can be extended further if the next developer decides to add other commands for the grocery list.</p>
-</li>
-<li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Highlights: While implementing this feature, I had to implement new commands such as <code>glist use</code> and <code>glist sort</code>. <code>glist use</code> is differentiated from <code>glist edit</code> as the underlying implementation of <code>glist use</code> appears to be different from <code>glist edit</code>.<br></p>
+<div class="paragraph">
+<p>On the other hand, <code>glist sort</code> is implemented to further improve the convenience level for the user. As of now, the sorting type supported is in ascending alphabetical order and ascending expiry date.</p>
+</div>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: Cross conversion between units supported.</p>
+<p><strong>Minor enhancement</strong>: Cross-conversion between units in <code>Amount</code> class</p>
 <div class="ulist">
 <ul>
 <li>
@@ -51,10 +58,8 @@ They would not want to be restricted by the units already specified as they woul
 Thus, we decided to implement the unit conversions to allow for greater convenience for the user.</p>
 </li>
 <li>
-<p>Highlights: This enhancement can be extended further if the next developer decides to add other units to the app.</p>
-</li>
-<li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Highlights: While implementing this feature, the choices of units are narrowed down to those that are most frequently used. Both the units and values can be easily retrieved by methods from the <code>Amount</code> class.
+As of now, the conversion methods are hard-coded as I was not able to find a library that is fully appropriate for the feature. The conversion methods in <code>Amount</code> class were heavily abstracted to provide next developers the ease of understanding and adding support for other units as they wish.</p>
 </li>
 </ul>
 </div>
@@ -68,16 +73,29 @@ Thus, we decided to implement the unit conversions to allow for greater convenie
 <ul>
 <li>
 <p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added user stories as issues on GitHub</p>
 </li>
 <li>
-<p>Documentation:</p>
+<p>Reviewed pull requests by team members</p>
+</li>
+<li>
+<p>Opened issues when bugs were found (Issue <a href="https://github.com/AY1920S1-CS2103-F10-2/main/issues/219">#219</a>)</p>
+</li>
+<li>
+<p>Fixed bugs after they were found (PR <a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/218">#218</a>)</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Community:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Reported bugs and suggestions for other teams in the class (<a href="https://github.com/kelvinnharris/ped/issues/5">#5</a>, <a href="https://github.com/kelvinnharris/ped/issues/2">#2</a>, <a href="https://github.com/kelvinnharris/ped/issues/1">#1</a>)</p>
+<p>Reported bugs and suggestions for other teams in the class (Issue <a href="https://github.com/kelvinnharris/ped/issues/5">#5</a>, <a href="https://github.com/kelvinnharris/ped/issues/2">#2</a>, <a href="https://github.com/kelvinnharris/ped/issues/1">#1</a>)</p>
 </li>
 </ul>
 </div>
@@ -87,10 +105,13 @@ Thus, we decided to implement the unit conversions to allow for greater convenie
 <div class="ulist">
 <ul>
 <li>
-<p>Setup for TravisCI for team repo (<a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/7">#7</a>)</p>
+<p>Setup the Github repo, Travis and Coveralls.</p>
 </li>
 <li>
-<p>Setup for Netlify for team repo</p>
+<p>Integrated TravisCI to the team repo (PR <a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/7">#7</a>)</p>
+</li>
+<li>
+<p>Integrated Coveralls to the team repo (PR <a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/237">#237</a>)</p>
 </li>
 </ul>
 </div>
@@ -117,9 +138,6 @@ Thus, we decided to implement the unit conversions to allow for greater convenie
 </table>
 <div class="sect2">
 <h3 id="grocery-list-management"><a class="link" href="#grocery-list-management">Grocery List Management</a></h3>
-<div class="paragraph">
-<p>The grocery list is the</p>
-</div>
 <div class="sect3">
 <h4 id="adding-a-food-item-code-glist-add-code"><a class="link" href="#adding-a-food-item-code-glist-add-code">Adding a food item: <code>glist add</code></a></h4>
 <div class="paragraph">
@@ -134,7 +152,7 @@ Format: <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p>
 <p><code>e/EXPIRY_DATE</code> must follow the format <code>dd/MM/yyyy</code>.</p>
 </li>
 <li>
-<p><code>a/AMOUNT</code> must have a magnitude i.e. measurable quantity. Magnitude and unit can be separated by a space.</p>
+<p><code>a/AMOUNT</code> must have a magnitude i.e. measurable quantity and a unit. Magnitude and unit can be separated by spaces. Refer <a href="#amount-parameter">here</a> for more info.</p>
 </li>
 <li>
 <p>There may be more than one tag field.</p>
@@ -143,10 +161,10 @@ Format: <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p>
 <p>The input fields can be in any order.</p>
 </li>
 <li>
-<p>Item with <strong>either same name or expiry date</strong> as the existing ones can be added.</p>
+<p>Item with <strong>either <a href="#same-name">same name</a> or expiry date</strong> as the existing ones can be added.</p>
 </li>
 <li>
-<p>Items with <strong>same name and expiry date</strong> as the existing ones cannot be added.</p>
+<p>Item with <strong>same name and expiry date</strong> as the existing ones cannot be added.</p>
 </li>
 </ul>
 </div>
@@ -162,8 +180,8 @@ Format: <code>glist add n/ITEM_NAME e/EXPIRY_DATE a/AMOUNT [t/TAG]</code></p>
 Add Fuji apples of quantity 10 units, tagged as "healthy" and expiring on 30 October 2019.</p>
 </li>
 <li>
-<p><code>glist add n/salad a/3 e/25/09/2019</code><br>
-Add salad of quantity 3, untagged and expiring on 25 September 2019.</p>
+<p><code>glist add n/salad a/3units e/25/09/2019</code><br>
+Add salad of quantity 3 units, untagged and expiring on 25 September 2019.</p>
 </li>
 <li>
 <p><code>glist add n/tea a/200 ml e/18/10/2019 t/fresh t/drink</code><br>
@@ -183,7 +201,7 @@ Format: <code>glist list</code></p>
 <h4 id="deleting-a-grocery-item-code-glist-delete-code"><a class="link" href="#deleting-a-grocery-item-code-glist-delete-code">Deleting a grocery item: <code>glist delete</code></a></h4>
 <div class="paragraph">
 <p>Deletes the specified grocery item from the grocery list when it is done being used.
-If the amount of the food item left &gt; 0, the item will be moved to the waste list.<br>
+If the grocery item is not completely used up when deleted (i.e. <code>amount</code> &gt; 0), the item will be moved to the waste list.<br>
 Format: <code>glist delete INDEX</code></p>
 </div>
 </div>
@@ -198,36 +216,10 @@ Format: <code>glist use INDEX a/AMOUNT</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>The system only recognises metric units. e.g. kilogram, liter. The system does not support unrecognised units such as tablespoon (not precise), and pint (not a metric unit).</p>
+<p>The amount left of a grocery item must be more than or equal to the specified amount to use.</p>
 </li>
-<li>
-<p>Only the units in the following unit categories are supported:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Weight</code>: <code>kg</code>, <code>g</code>, <code>oz</code>, <code>lbs</code></p>
-</li>
-<li>
-<p><code>Volume</code>: <code>L</code>, <code>ml</code></p>
-</li>
-<li>
-<p><code>Quantity</code>: <code>units</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Whitespace between magnitude and unit is allowed.</p>
-</li>
-<li>
-<p>Cross conversion between units of the same categories is supported.</p>
-<div class="ulist">
-<ul>
 <li>
 <p>If the unit of input amount is different from the unit of item, the resultant amount would follow the unit of the original item. e.g. If an item of <code>1kg</code> is used by <code>300g</code>, it would become <code>0.7kg</code> and not <code>700g</code>.</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -263,7 +255,7 @@ Format: <code>glist edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [t/TAG]</code></p>
 <p>Edits an item at the specified <code>INDEX</code>. The index refers to the number shown in the displayed list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>At least one of the optional field must be provided.</p>
+<p>At least one of the optional fields must be provided. At least one of the provided fields must be different from the original item&#8217;s field.</p>
 </li>
 <li>
 <p>Amount cannot be edited, but can only be modified through <code>use</code>.</p>
@@ -276,6 +268,13 @@ Format: <code>glist edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [t/TAG]</code></p>
 </li>
 <li>
 <p>You can remove all the item&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+<li>
+<p><strong>As the grocery list does not allow duplicates (items with <a href="#same-name">same name</a> and expiry date), any attempt of edit to achieve duplication is not allowed and would result in an error.</strong></p>
+</li>
+<li>
+<p><strong>User is encouraged to practise discretion when editing an item as iFridge is unable to recognise items based on its name and compare between the name and amount of an item.</strong>
+For example, if an item named <code>Milk</code> with amount <code>2L</code> is edited to have the name <code>Beef</code>, iFridge would allow the edit, even though <code>Beef</code> with amount <code>2L</code> does not sound logical.</p>
 </li>
 </ul>
 </div>
@@ -314,10 +313,10 @@ Format: <code>glist sort by/TYPE</code><br></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Alphabetical: Sort the grocery list in ascending alphabetical order</p>
+<p><code>alphabetical</code>: Sort the grocery list based on the item&#8217;s name in ascending alphabetical order</p>
 </li>
 <li>
-<p>Expiry date: Sort the grocery list in ascending expiry date. i.e. from oldest to newest.</p>
+<p><code>expiry</code>: Sort the grocery list in ascending expiry date. i.e. from oldest to newest.</p>
 </li>
 </ul>
 </div>
@@ -403,40 +402,164 @@ Returns any grocery item which contains any of the word <code>milo</code>, <code
 <div class="sect3">
 <h4 id="implementations"><a class="link" href="#implementations">Implementations</a></h4>
 <div class="paragraph">
-<p>The user is able to use specific item that she has. This can be done with the <code>glist use</code> command.<br></p>
+<p>The <code>glist use</code> feature in the grocery list allows user to use their food items based on the <code>AMOUNT</code> inputted.<br></p>
 </div>
 <div class="paragraph">
-<p>The sequence diagrams for interactions between the Logic and Model components when a user executes the <code>glist use</code> command is shown below.</p>
+<p>This implementation of this feature is highly dependent on the <code>Amount</code> class as deduction of values is done by the <code>Amount</code> class itself.</p>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>The sequence diagram for interactions between the Logic and Model components when a user executes the <code>glist use</code> command is shown below.
+The subsequent sequence diagram shows a lower level picture of how a grocery item is used.</p>
+</div>
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/UseGrocerySequenceDiagram.png" alt="UseGrocerySequenceDiagram">
+<img src="../images/UseGrocerySequenceDiagram.png" alt="UseGrocerySequenceDiagram" width="900">
 </div>
+<div class="title">Figure 1. The sequence diagram to show how use grocery command is parsed and executed.</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/UseGrocerySequenceDiagramRef.png" alt="UseGrocerySequenceDiagramRef" width="800">
+</div>
+<div class="title">Figure 2. The sequence diagram for the reference frame to show the process of how a grocery item is used.</div>
 </div>
 <div class="paragraph">
-<p>The current implementation for using a grocery item is by overwriting the existing grocery item with a new grocery item object with its amount field deducted. The rest of the fields are copied over without any other modifications.</p>
+<p>The current implementation for using a grocery item is by overwriting the existing grocery item with a new grocery item object with its amount field deducted, as shown in the diagram above. The rest of the fields are copied over without any other modifications.</p>
 </div>
 <div class="paragraph">
-<p>The <code>glist use</code> command is also able to support unit conversion.</p>
+<p>The <code>glist use</code> command is also able to support unit conversion. Currently, the implementation of the unit conversion are calculated manually inside the <code>Amount</code> class. No external library is used.</p>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarises how the unit conversion is done.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/UseGroceryActivityDiagram.png" alt="UseGroceryActivityDiagram">
+<img src="../images/UseGroceryActivityDiagram.png" alt="UseGroceryActivityDiagram" width="300">
 </div>
 </div>
 <div class="paragraph">
-<p>The conversions of units are done by <code>Amount</code> class. Unit type is necessary in the implementation to allow for keeping track of different unit groups. For example, <code>kg</code>, <code>g</code>, <code>lbs</code>, and <code>oz</code> are all categorised under the unit type <code>Weight</code>.</p>
+<p>The conversions of units are done in the <code>Amount</code> class. Unit type is necessary in the implementation to allow for keeping track of different unit groups across different lists in the application. For example, <code>kg</code>, <code>g</code>, <code>lbs</code>, and <code>oz</code> are all categorised under the unit type <code>Weight</code>.
+(Refer to the <a href="UserGuide.html#amount-parameter">User Guide</a> for more info about the <code>Amount</code> parameter.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-reducing-the-amount"><a class="link" href="#aspect-reducing-the-amount">Aspect: Reducing the amount</a></h5>
+<h5 id="aspect-storing-of-the-value-and-unit"><a class="link" href="#aspect-storing-of-the-value-and-unit">Aspect: Storing of the value and unit</a></h5>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Design considerations of the <code>glist use</code> command</caption>
+<caption class="title">Table 1. Design considerations for storing value and unit in <code>Amount</code> class</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Alternative 1 (Chosen Implementation)</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+<th class="tableblock halign-left valign-top">Alternative 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Storing the value and unit as a combined string.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Maintains consistency with other fields (name, expiry date).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Difficult to parse and manipulate.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Storing the value and unit as a float and a string</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Parsing would be easier.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Consistency is compromised.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Storing the value and unit as two classes of itw own (i.e. Value class and Unit class)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>More OOP.</p>
+</li>
+<li>
+<p>More scalable and maintainable.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Consistency is compromised.</p>
+</li>
+<li>
+<p>Harder to implement.</p>
+</li>
+<li>
+<p>Implementation might be overkill/redundant.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="aspect-deducting-the-code-amount-code"><a class="link" href="#aspect-deducting-the-code-amount-code">Aspect: Deducting the <code>Amount</code></a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Design considerations of the <code>glist use</code> command</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -459,10 +582,7 @@ Returns any grocery item which contains any of the word <code>milo</code>, <code
 <div class="ulist">
 <ul>
 <li>
-<p>Easy to implement.</p>
-</li>
-<li>
-<p>Less bug-prone.</p>
+<p>This method is easier to implement and would be less prone to bugs.</p>
 </li>
 </ul>
 </div>
@@ -472,7 +592,7 @@ Returns any grocery item which contains any of the word <code>milo</code>, <code
 <div class="ulist">
 <ul>
 <li>
-<p>May have performance issues in terms of memory usage.</p>
+<p>Less efficient in terms of runtime.</p>
 </li>
 </ul>
 </div>
@@ -480,7 +600,7 @@ Returns any grocery item which contains any of the word <code>milo</code>, <code
 </ul>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Modify the Amount in the grocery item.</p>
+<p>Modify the <code>Amount</code> in the grocery item.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -499,7 +619,7 @@ Returns any grocery item which contains any of the word <code>milo</code>, <code
 <div class="ulist">
 <ul>
 <li>
-<p>Amount would be modifiable (not <code>final</code> anymore), thus is vulnerable to alterations.</p>
+<p>Mutable <code>Amount</code> field may result in unforeseen changes, hence more prone to bugs.</p>
 </li>
 </ul>
 </div>
@@ -513,7 +633,7 @@ Returns any grocery item which contains any of the word <code>milo</code>, <code
 <div class="sect4">
 <h5 id="aspect-keeping-track-of-unit-type"><a class="link" href="#aspect-keeping-track-of-unit-type">Aspect: Keeping track of unit type</a></h5>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 2. Design considerations for the unit conversion in <code>glist use</code></caption>
+<caption class="title">Table 3. Design considerations for the unit conversion in <code>glist use</code></caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -546,7 +666,7 @@ Returns any grocery item which contains any of the word <code>milo</code>, <code
 <div class="ulist">
 <ul>
 <li>
-<p>Not very intuitive.</p>
+<p>May not be very intuitive for the user.</p>
 </li>
 </ul>
 </div>
@@ -563,7 +683,7 @@ Returns any grocery item which contains any of the word <code>milo</code>, <code
 <div class="ulist">
 <ul>
 <li>
-<p>Will be more intuitive to the user. e.g. After using <code>900ml</code> of a <code>1L</code> milk, it is more intuitive to show <code>100ml</code> instead of <code>0.1L</code>.</p>
+<p>Will be more intuitive to the user. e.g. After using <code>650ml</code> of a <code>1L</code> milk, it might be more intuitive to show <code>350ml</code> instead of <code>0.35L</code>.</p>
 </li>
 </ul>
 </div>
@@ -589,6 +709,119 @@ Returns any grocery item which contains any of the word <code>milo</code>, <code
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="grocery-list-manual-testing"><a class="link" href="#grocery-list-manual-testing">Grocery List Manual Testing</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a grocery item while all items are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. The grocery list can be empty or contain some items.</p>
+</li>
+<li>
+<p>Test case: <code>glist add n/Coffee a/200ml e/19/11/2019 t/caffeine</code><br>
+Expected: If the grocery list is empty, a grocery item would be added to the grocery list. Details of the added grocery item would also be shown in the status message.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting a grocery item while all items are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. Multiple grocery items exist in the grocery list.</p>
+</li>
+<li>
+<p>Test case: <code>glist delete 1</code><br>
+Expected: First grocery item is deleted from the grocery list. Details of the deleted grocery item is shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>glist delete 0</code><br>
+Expected: No grocery item is deleted. Error details is shown in the status message.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>glist delete</code>, <code>glist delete x</code> (where x is larger than the list size).
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Editing a grocery item in the grocery list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. Multiple grocery items exist in the grocery list. Item to be edited must not same name and expiry date as any other item in the list.</p>
+</li>
+<li>
+<p>Test case: <code>glist edit 1 n/Papaya</code><br>
+Expected: If the first grocery item has unique name and expiry date in the grocery list, the grocery item&#8217;s name is edited to Papaya. Other fields remain the same. Details of the edited grocery item is shown in the status message.<br>
+If the first grocery item does not have unique name and expiry date in the grocery list, the grocery item&#8217;s name is not edited. Error details is shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>glist edit 2 a/500ml</code><br>
+Expected: Error details is shown in the status message as amount field cannot be edited.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Using a grocery item in the grocery list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. Multiple grocery items exist in the grocery list.
+Item to be used has the same unit type and is not used up completely. Amount left exceeds amount to be used.</p>
+</li>
+<li>
+<p>Test case: <code>glist use 1 a/50ml</code><br>
+Expected: The amount of the first grocery item is deducted by 50ml. Other fields remain the same. Details of the used grocery item is shown in the status message.</p>
+</li>
+<li>
+<p>Other invalid use commands to try: <code>glist use 2 a/400g</code> (where the item has unit of L), <code>glist use 2 a/30lbs</code> (where the amount of the item is less than 30lbs).</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Sorting the grocery list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. Multiple grocery items exist in the grocery list.</p>
+</li>
+<li>
+<p>Test case: <code>glist sort by/expiry</code><br>
+Expected: The displayed grocery list would be sorted based on the grocery item&#8217;s expiry date in ascending order (from earliest to most recent).</p>
+</li>
+<li>
+<p>Test case: <code>glist sort by/alphabetical</code><br>
+Expected: The displayed grocery list would be sorted based on the grocery item&#8217;s name in ascending alphabetical order.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Finding items based on name or tag</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. Multiple grocery items exist in the grocery list.
+Name or tag to be found may exist or not exist in any of the grocery items.</p>
+</li>
+<li>
+<p>Test case: <code>glist find apple snack</code><br>
+Expected: The displayed grocery list would now contain items that has <code>apple</code> and <code>snack</code> as either their name or tag. If no items match, the displayed list would be empty.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -599,4 +832,4 @@ Returns any grocery item which contains any of the word <code>milo</code>, <code
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:02:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 04:44:33 UTC</div></div></div></body></html>

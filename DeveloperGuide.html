@@ -49,10 +49,11 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#waste-list-manual-testing">G.2. Waste List Manual Testing</a></li>
-<li><a href="#undo-redo-manual-testing">G.3. Undo Redo Manual Testing</a></li>
-<li><a href="#reminder-manual-testing">G.4. Reminder Manual Testing</a></li>
-<li><a href="#saving-data">G.5. Saving data</a></li>
+<li><a href="#grocery-list-manual-testing">G.2. Grocery List Manual Testing</a></li>
+<li><a href="#waste-list-manual-testing">G.3. Waste List Manual Testing</a></li>
+<li><a href="#undo-redo-manual-testing">G.4. Undo Redo Manual Testing</a></li>
+<li><a href="#reminder-manual-testing">G.5. Reminder Manual Testing</a></li>
+<li><a href="#saving-data">G.6. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -94,7 +95,7 @@ Refer to the <a href="UsingPlantUml.html">Using PlantUML guide</a> to learn how 
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/address/Main.java"><code>Main</code></a> and <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/ifridge/Main.java"><code>Main</code></a> and <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/ifridge/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -160,13 +161,13 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code>.</p>
+<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>glist delete 1</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ArchitectureSequenceDiagram.png" alt="ArchitectureSequenceDiagram">
 </div>
-<div class="title">Figure 3. Component interactions for <code>delete 1</code> command</div>
+<div class="title">Figure 3. Component interactions for <code>glist delete 1</code> command</div>
 </div>
 <div class="paragraph">
 <p>The sections below give more details of each component.</p>
@@ -181,13 +182,13 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/ifridge/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>GroceryListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/ifridge/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -213,7 +214,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/ifridge/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -278,7 +279,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/ifridge/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Model</code>,</p>
@@ -319,7 +320,7 @@ For instance, shopping lists require its food items to have additional attribute
 <div class="title">Figure 8. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103-F10-2/main/tree/master/src/main/java/seedu/ifridge/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -983,40 +984,164 @@ external storage files which may cause the waste archive and the statistics to b
 <div class="sect3">
 <h4 id="implementations"><a class="link" href="#implementations">3.11.1. Implementations</a></h4>
 <div class="paragraph">
-<p>The user is able to use specific item that she has. This can be done with the <code>glist use</code> command.<br></p>
+<p>The <code>glist use</code> feature in the grocery list allows user to use their food items based on the <code>AMOUNT</code> inputted.<br></p>
 </div>
 <div class="paragraph">
-<p>The sequence diagrams for interactions between the Logic and Model components when a user executes the <code>glist use</code> command is shown below.</p>
+<p>This implementation of this feature is highly dependent on the <code>Amount</code> class as deduction of values is done by the <code>Amount</code> class itself.</p>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>The sequence diagram for interactions between the Logic and Model components when a user executes the <code>glist use</code> command is shown below.
+The subsequent sequence diagram shows a lower level picture of how a grocery item is used.</p>
+</div>
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/UseGrocerySequenceDiagram.png" alt="UseGrocerySequenceDiagram">
+<img src="images/UseGrocerySequenceDiagram.png" alt="UseGrocerySequenceDiagram" width="900">
 </div>
+<div class="title">Figure 16. The sequence diagram to show how use grocery command is parsed and executed.</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/UseGrocerySequenceDiagramRef.png" alt="UseGrocerySequenceDiagramRef" width="800">
+</div>
+<div class="title">Figure 17. The sequence diagram for the reference frame to show the process of how a grocery item is used.</div>
 </div>
 <div class="paragraph">
-<p>The current implementation for using a grocery item is by overwriting the existing grocery item with a new grocery item object with its amount field deducted. The rest of the fields are copied over without any other modifications.</p>
+<p>The current implementation for using a grocery item is by overwriting the existing grocery item with a new grocery item object with its amount field deducted, as shown in the diagram above. The rest of the fields are copied over without any other modifications.</p>
 </div>
 <div class="paragraph">
-<p>The <code>glist use</code> command is also able to support unit conversion.</p>
+<p>The <code>glist use</code> command is also able to support unit conversion. Currently, the implementation of the unit conversion are calculated manually inside the <code>Amount</code> class. No external library is used.</p>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarises how the unit conversion is done.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/UseGroceryActivityDiagram.png" alt="UseGroceryActivityDiagram">
+<img src="images/UseGroceryActivityDiagram.png" alt="UseGroceryActivityDiagram" width="300">
 </div>
 </div>
 <div class="paragraph">
-<p>The conversions of units are done by <code>Amount</code> class. Unit type is necessary in the implementation to allow for keeping track of different unit groups. For example, <code>kg</code>, <code>g</code>, <code>lbs</code>, and <code>oz</code> are all categorised under the unit type <code>Weight</code>.</p>
+<p>The conversions of units are done in the <code>Amount</code> class. Unit type is necessary in the implementation to allow for keeping track of different unit groups across different lists in the application. For example, <code>kg</code>, <code>g</code>, <code>lbs</code>, and <code>oz</code> are all categorised under the unit type <code>Weight</code>.
+(Refer to the <a href="UserGuide.html#amount-parameter">User Guide</a> for more info about the <code>Amount</code> parameter.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.11.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-reducing-the-amount"><a class="link" href="#aspect-reducing-the-amount">Aspect: Reducing the amount</a></h5>
+<h5 id="aspect-storing-of-the-value-and-unit"><a class="link" href="#aspect-storing-of-the-value-and-unit">Aspect: Storing of the value and unit</a></h5>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Design considerations of the <code>glist use</code> command</caption>
+<caption class="title">Table 1. Design considerations for storing value and unit in <code>Amount</code> class</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Alternative 1 (Chosen Implementation)</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+<th class="tableblock halign-left valign-top">Alternative 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Storing the value and unit as a combined string.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Maintains consistency with other fields (name, expiry date).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Difficult to parse and manipulate.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Storing the value and unit as a float and a string</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Parsing would be easier.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Consistency is compromised.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Storing the value and unit as two classes of itw own (i.e. Value class and Unit class)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>More OOP.</p>
+</li>
+<li>
+<p>More scalable and maintainable.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Consistency is compromised.</p>
+</li>
+<li>
+<p>Harder to implement.</p>
+</li>
+<li>
+<p>Implementation might be overkill/redundant.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="aspect-deducting-the-code-amount-code"><a class="link" href="#aspect-deducting-the-code-amount-code">Aspect: Deducting the <code>Amount</code></a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Design considerations of the <code>glist use</code> command</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1039,10 +1164,7 @@ external storage files which may cause the waste archive and the statistics to b
 <div class="ulist">
 <ul>
 <li>
-<p>Easy to implement.</p>
-</li>
-<li>
-<p>Less bug-prone.</p>
+<p>This method is easier to implement and would be less prone to bugs.</p>
 </li>
 </ul>
 </div>
@@ -1052,7 +1174,7 @@ external storage files which may cause the waste archive and the statistics to b
 <div class="ulist">
 <ul>
 <li>
-<p>May have performance issues in terms of memory usage.</p>
+<p>Less efficient in terms of runtime.</p>
 </li>
 </ul>
 </div>
@@ -1060,7 +1182,7 @@ external storage files which may cause the waste archive and the statistics to b
 </ul>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Modify the Amount in the grocery item.</p>
+<p>Modify the <code>Amount</code> in the grocery item.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1079,7 +1201,7 @@ external storage files which may cause the waste archive and the statistics to b
 <div class="ulist">
 <ul>
 <li>
-<p>Amount would be modifiable (not <code>final</code> anymore), thus is vulnerable to alterations.</p>
+<p>Mutable <code>Amount</code> field may result in unforeseen changes, hence more prone to bugs.</p>
 </li>
 </ul>
 </div>
@@ -1093,7 +1215,7 @@ external storage files which may cause the waste archive and the statistics to b
 <div class="sect4">
 <h5 id="aspect-keeping-track-of-unit-type"><a class="link" href="#aspect-keeping-track-of-unit-type">Aspect: Keeping track of unit type</a></h5>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 2. Design considerations for the unit conversion in <code>glist use</code></caption>
+<caption class="title">Table 3. Design considerations for the unit conversion in <code>glist use</code></caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1126,7 +1248,7 @@ external storage files which may cause the waste archive and the statistics to b
 <div class="ulist">
 <ul>
 <li>
-<p>Not very intuitive.</p>
+<p>May not be very intuitive for the user.</p>
 </li>
 </ul>
 </div>
@@ -1143,7 +1265,7 @@ external storage files which may cause the waste archive and the statistics to b
 <div class="ulist">
 <ul>
 <li>
-<p>Will be more intuitive to the user. e.g. After using <code>900ml</code> of a <code>1L</code> milk, it is more intuitive to show <code>100ml</code> instead of <code>0.1L</code>.</p>
+<p>Will be more intuitive to the user. e.g. After using <code>650ml</code> of a <code>1L</code> milk, it might be more intuitive to show <code>350ml</code> instead of <code>0.35L</code>.</p>
 </li>
 </ul>
 </div>
@@ -1556,9 +1678,9 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user with many grocery items in the grocery list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort grocery items by expiry date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate an expired grocery item easily</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -1850,7 +1972,7 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 <p>User requests to delete a specific grocery item in the list</p>
 </li>
 <li>
-<p>GroceryList deletes the person</p>
+<p>GroceryList deletes the grocery item</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2041,7 +2163,120 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="waste-list-manual-testing"><a class="link" href="#waste-list-manual-testing">G.2. Waste List Manual Testing</a></h3>
+<h3 id="grocery-list-manual-testing"><a class="link" href="#grocery-list-manual-testing">G.2. Grocery List Manual Testing</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a grocery item while all items are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. The grocery list can be empty or contain some items.</p>
+</li>
+<li>
+<p>Test case: <code>glist add n/Coffee a/200ml e/19/11/2019 t/caffeine</code><br>
+Expected: If the grocery list is empty, a grocery item would be added to the grocery list. Details of the added grocery item would also be shown in the status message.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting a grocery item while all items are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. Multiple grocery items exist in the grocery list.</p>
+</li>
+<li>
+<p>Test case: <code>glist delete 1</code><br>
+Expected: First grocery item is deleted from the grocery list. Details of the deleted grocery item is shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>glist delete 0</code><br>
+Expected: No grocery item is deleted. Error details is shown in the status message.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>glist delete</code>, <code>glist delete x</code> (where x is larger than the list size).
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Editing a grocery item in the grocery list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. Multiple grocery items exist in the grocery list. Item to be edited must not same name and expiry date as any other item in the list.</p>
+</li>
+<li>
+<p>Test case: <code>glist edit 1 n/Papaya</code><br>
+Expected: If the first grocery item has unique name and expiry date in the grocery list, the grocery item&#8217;s name is edited to Papaya. Other fields remain the same. Details of the edited grocery item is shown in the status message.<br>
+If the first grocery item does not have unique name and expiry date in the grocery list, the grocery item&#8217;s name is not edited. Error details is shown in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>glist edit 2 a/500ml</code><br>
+Expected: Error details is shown in the status message as amount field cannot be edited.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Using a grocery item in the grocery list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. Multiple grocery items exist in the grocery list.
+Item to be used has the same unit type and is not used up completely. Amount left exceeds amount to be used.</p>
+</li>
+<li>
+<p>Test case: <code>glist use 1 a/50ml</code><br>
+Expected: The amount of the first grocery item is deducted by 50ml. Other fields remain the same. Details of the used grocery item is shown in the status message.</p>
+</li>
+<li>
+<p>Other invalid use commands to try: <code>glist use 2 a/400g</code> (where the item has unit of L), <code>glist use 2 a/30lbs</code> (where the amount of the item is less than 30lbs).</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Sorting the grocery list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. Multiple grocery items exist in the grocery list.</p>
+</li>
+<li>
+<p>Test case: <code>glist sort by/expiry</code><br>
+Expected: The displayed grocery list would be sorted based on the grocery item&#8217;s expiry date in ascending order (from earliest to most recent).</p>
+</li>
+<li>
+<p>Test case: <code>glist sort by/alphabetical</code><br>
+Expected: The displayed grocery list would be sorted based on the grocery item&#8217;s name in ascending alphabetical order.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Finding items based on name or tag</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all grocery items in the grocery list using the <code>glist list</code> command. Multiple grocery items exist in the grocery list.
+Name or tag to be found may exist or not exist in any of the grocery items.</p>
+</li>
+<li>
+<p>Test case: <code>glist find apple snack</code><br>
+Expected: The displayed grocery list would now contain items that has <code>apple</code> and <code>snack</code> as either their name or tag. If no items match, the displayed list would be empty.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="waste-list-manual-testing"><a class="link" href="#waste-list-manual-testing">G.3. Waste List Manual Testing</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2140,7 +2375,7 @@ It also indicates to the user what the earliest record in the waste archive is.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-manual-testing"><a class="link" href="#undo-redo-manual-testing">G.3. Undo Redo Manual Testing</a></h3>
+<h3 id="undo-redo-manual-testing"><a class="link" href="#undo-redo-manual-testing">G.4. Undo Redo Manual Testing</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2218,7 +2453,7 @@ Expected: The tab for shopping list is shown</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="reminder-manual-testing"><a class="link" href="#reminder-manual-testing">G.4. Reminder Manual Testing</a></h3>
+<h3 id="reminder-manual-testing"><a class="link" href="#reminder-manual-testing">G.5. Reminder Manual Testing</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2264,7 +2499,7 @@ default reminder settings is set to 3 days.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.5. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">G.6. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2287,4 +2522,4 @@ default reminder settings is set to 3 days.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:02:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 04:44:33 UTC</div></div></div></body></html>
