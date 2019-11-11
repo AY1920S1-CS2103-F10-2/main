@@ -51,9 +51,10 @@
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
 <li><a href="#grocery-list-manual-testing">G.2. Grocery List Manual Testing</a></li>
 <li><a href="#waste-list-manual-testing">G.3. Waste List Manual Testing</a></li>
-<li><a href="#undo-redo-manual-testing">G.4. Undo Redo Manual Testing</a></li>
-<li><a href="#reminder-manual-testing">G.5. Reminder Manual Testing</a></li>
-<li><a href="#saving-data">G.6. Saving data</a></li>
+<li><a href="#shopping-list-manual-testing">G.4. Shopping List Manual Testing</a></li>
+<li><a href="#undo-redo-manual-testing">G.5. Undo Redo Manual Testing</a></li>
+<li><a href="#reminder-manual-testing">G.6. Reminder Manual Testing</a></li>
+<li><a href="#saving-data">G.7. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -1458,7 +1459,248 @@ The lifeline for <code>TemplateListParser</code>, <code>TemplateItemParser</code
 </div>
 <div class="sect2">
 <h3 id="mergebought-feature"><a class="link" href="#mergebought-feature">3.13. MergeBought Feature</a></h3>
-
+<div class="sect3">
+<h4 id="implementations-2"><a class="link" href="#implementations-2">3.13.1. Implementations</a></h4>
+<div class="paragraph">
+<p>The user is able to merge all the bought shopping items into the grocery list. This can be done with the use of the `slist mergebought' command.</p>
+</div>
+<div class="paragraph">
+<p>The current implementation to merge bought items is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For each boughtItem in boughtList:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For each groceryItem in GroceryList</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If there is an existing groceryItem in GroceryList with same name and expiry date as the boughtItem, the quantity of that groceryItem will be updated according to the amount bought.</p>
+</li>
+<li>
+<p>If there is no existing groceryItem with same Name and ExpiryDate, the boughtItem will be added to the GroceryList.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>For each shoppingItem in ShoppingList find the bought shoppingItem with same name as the boughtItem:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If the boughtItem has greater Amount than its corresponding shoppingItem, the shoppingItem is deleted from the ShoppingList.</p>
+</li>
+<li>
+<p>If the boughtItem has lesser Amount than its corresponding shoppingItem, the shoppingItem&#8217;s quantity is just reduced.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Merge Bought mechanism is facilitated by <code>ShoppingList</code>, <code>GroceryList</code>, and <code>ShoppingComparator</code>.
+The <code>ShoppingList</code> is an observable list of <code>ShoppingItem</code> and <code>GroceryList</code> is an observable list of <code>GroceryItem</code>.</p>
+</div>
+<div class="paragraph">
+<p>Merging needs to use the BoughtList to modify the ShoppingList and GroceryList. Hence, the command retrieves the 3 lists.</p>
+</div>
+<div class="paragraph">
+<p>When a <code>GroceryItem</code> 's amount is be added, the GroceryItem at that index is overwritten by a new GroceryItem with the updated amount. If a new boughtItem (<code>Groceryitem</code>) is to be added to the <code>GroceryList</code>, it is appended to the <code>GroceryList</code></p>
+</div>
+<div class="paragraph">
+<p>Similarly, when a <code>ShoppingItem</code> 's amount is reduced, the ShoppingItem at that index is overwritten by a new ShoppingItem with the updated amount. If a <code>ShoppingItem</code> is to be deleted from the <code>ShoppingList</code>, it is deleted and the <code>ShoppingList</code> is sorted using a <code>ShoppingComparator</code>.</p>
+</div>
+<div class="paragraph">
+<p>The creation of new objects to replace the existing ones is necessary since all the objects are immutable.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Model#getFilteredBoughtList&#8201;&#8212;&#8201;Gets <code>ObservableList</code> with the elements of the <code>Model</code> 's boughtList (stored in a <code>GroceryList</code>)</p>
+</li>
+<li>
+<p>Model#getFilteredGroceryList&#8201;&#8212;&#8201;Gets <code>ObservableList</code> with the elements of the <code>Model</code> 's <code>GroceryList</code></p>
+</li>
+<li>
+<p>Model#getFilteredShoppingList&#8201;&#8212;&#8201;Gets <code>ObservableList</code> with the elements of the <code>Model</code> 's <code>ShoppingList</code></p>
+</li>
+<li>
+<p>Model#setBoughtList&#8201;&#8212;&#8201;Sets the boughtList as the specified <code>GroceryList</code></p>
+</li>
+<li>
+<p>Model#sortShoppingItems&#8201;&#8212;&#8201;Sorts the <code>ShoppingList</code> by urgent status first, and then by alphabetical order.</p>
+</li>
+<li>
+<p>MergeShoppingCommand#modifyGroceryListAccordingToBoughtItem&#8201;&#8212;&#8201;Updates <code>GroceryList</code> according to a boughtItem</p>
+</li>
+<li>
+<p>MergeShoppingCommand#modifyShoppingListAccordingToBoughtItem&#8201;&#8212;&#8201;Updates <code>ShoppingList</code> according to a boughtItem</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#getFilteredBoughtList</code></p>
+</div>
+<div class="paragraph">
+<p>The sequence diagrams for interactions between Logic and Model components when a user executes <code>slist mergebought</code> command is shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MergeBoughtSequenceDiagram.png" alt="MergeBoughtSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises how <code>slist mergebought</code> is carried out.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MergeBoughtActivityDiagram1.png" alt="MergeBoughtActivityDiagram1">
+</div>
+</div>
+<div class="paragraph">
+<p>The mergebought command supports unit conversion. The boughtAmount&#8217;s unit will be converted to match the groceryAmount.
+The following activity diagram delineates how the unit conversion takes place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MergeBoughtActivityDiagram2.png" alt="MergeBoughtActivityDiagram2">
+</div>
+</div>
+<div class="paragraph">
+<p>The conversions of units are done by <code>Amount</code> class. Unit type is necessary in the implementation to allow for keeping track of different unit groups. For example, <code>kg</code>, <code>g</code>, <code>lbs</code>, and <code>oz</code> are all categorised under the unit type <code>Weight</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.13.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-storing-boughtitems"><a class="link" href="#aspect-storing-boughtitems">Aspect: Storing BoughtItems</a></h5>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Design considerations for the storage of boughtItems</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Alternative 1 (Chosen Implementation)</th>
+<th class="tableblock halign-left valign-top">Alternative 2</th>
+<th class="tableblock halign-left valign-top">Alternative 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Use <code>GroceryItem</code> to indicate boughtItems and have separate JsonStorage Classes for BoughtItems</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ShoppingItem</code> objects can be immutable with final attributes</p>
+</li>
+<li>
+<p>Easy to maintain due to consistent functionality.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Extra Storage and maintenance.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Use <code>ShoppingItem</code> as boughtItem with non-final <strong>ExpiryDate</strong> and a <strong>boughtAmount</strong> attribute</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No extra storage needed.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ShoppingItem</code> is not immutable due to non-final attribute, i.e., vulnerable to alterations.</p>
+</li>
+<li>
+<p>Consistency of <code>ShoppingItem</code> will be compromised: some will have an ExpiryDate, some will not.</p>
+</li>
+<li>
+<p>Extra field <strong>boughtAmount</strong> required, and it needs to be maintained (not intuitive for a <code>ShoppingItem</code> to have 2 different <code>Amount</code> fields)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Use child class of <code>ShoppingItem</code> for boughtItem: <code>BoughtShoppingItem</code> with <strong>ExpiryDate</strong> and <strong>boughtAmount</strong> attributes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros</p>
+<div class="ulist">
+<ul>
+<li>
+<p>More Intuitive</p>
+</li>
+<li>
+<p>Immutability maintained</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Extra Storage</p>
+</li>
+<li>
+<p>Extra Class ,i.e., extra code</p>
+</li>
+<li>
+<p>Extra steps for conversion from <code>BoughtShoppingItem</code> to <code>GroceryItem</code> while merging boughtItems to <code>GroceryList</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2375,7 +2617,136 @@ It also indicates to the user what the earliest record in the waste archive is.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-manual-testing"><a class="link" href="#undo-redo-manual-testing">G.4. Undo Redo Manual Testing</a></h3>
+<h3 id="shopping-list-manual-testing"><a class="link" href="#shopping-list-manual-testing">G.4. Shopping List Manual Testing</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>List all items in shopping list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>slist list</code><br>
+Expected: The shopping list is displayed, with 3 sections (urgent, not urgent and not fully bought, fully bought). Within each of the three sections  of the shopping items, items are sorted alphabetically.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding an item to the shopping list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>slist add n/Grapes a/500g</code><br>
+Expected: Shopping item with name <code>Grapes</code> and amount <code>500g</code> is created and added to the shopping list. The details of the added shopping item are displayed. The new shopping item appears after urgent items and before fully bought items in the shopping list.</p>
+</li>
+<li>
+<p>Test case: <code>slist add n/Grapes a/invalidAmount</code><br>
+Expected: Error message displayed indicating invalid amount entered.</p>
+</li>
+<li>
+<p>Test case: <code>slist add n/Grapes</code><br>
+Expected: Error message displayed that indicates that the command format is wrong. The correct format for the add shopping command is also displayed.</p>
+</li>
+<li>
+<p>Test case: <code>slist add a/5g</code><br>
+Expected: Error message displayed that indicates that the command format is wrong. The correct format for the add shopping command is also displayed.</p>
+</li>
+<li>
+<p>Test case: <code>slist add</code><br>
+Expected: Error message displayed that indicates that the command format is wrong. The correct format for the add shopping command is also displayed.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Editing an item in the shopping list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>slist edit 1 n/Oranges</code><br>
+Expected: First shopping item&#8217;s name is edited to 'Oranges'. Details of the edited shopping item are displayed. If some or all of the item was bought, the name of the corresponding bought item is also changed in storage to avoid inconsistencies.</p>
+</li>
+<li>
+<p>Test case: <code>slist edit 1 a/50g</code><br>
+Expected: First shopping item&#8217;s amount is edited to 50g. Details of the edited shopping item are displayed.</p>
+</li>
+<li>
+<p>Test case: <code>slist edit 1</code><br>
+Expected: Error message displayed indicating that at least one field to be edited must be provided.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting an item in the shopping list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>slist delete 1</code><br>
+Expected: First shopping item is deleted from the shopping list. Details of the removed shopping item are displayed.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Marking a shopping item as urgent</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>slist urgent 1</code><br>
+Expected: Marks the first shopping item as urgent. Details of the shopping item marked as urgent are displayed. The shopping item gets an <code>Urgent!</code> tag and moves towards the upper section of the shopping list (with other urgent items).</p>
+</li>
+<li>
+<p>Test case: <code>slist urgent</code><br>
+Expected: Error message displayed indicating wrong command format. The correct format of an urgent shopping command is also displayed.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Buying a shopping item (Marking a shopping item as Bought)</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>slist bought 1 a/50g e/24/11/2019</code><br>
+Expected: First shopping item is marked as bought. A bought item is created with the name of the shopping item and with the amount and expiry date provided in the command. It gets a <code>Partially Bought</code> tag if the amount bought is less than the amount of the shopping item, and it gets a <code>Fully Bought</code> tag if the bought amount is greater than or equal to the amount of the shopping item. In either case, the tag also displays the amount of shopping item bought. <strong>If an item is fully bought, it moves to the bottom of the shopping list (regardless of whether it is urgent or not)</strong>. Details of the shopping item marked as bought are also shown.</p>
+</li>
+<li>
+<p>Test case: <code>slist bought 2 a/0g e/24/11/2019</code><br>
+Expected: Error message displayed indicating that the amount specified cannot be 0 or negligible. The guidelines of how to use amount are also specified.</p>
+</li>
+<li>
+<p>Test case: <code>slist bought 1 a/50g</code><br>
+Expected: Error message displayed indicating that the command format is wrong. The correct format for a bought shopping command is also displayed.</p>
+</li>
+<li>
+<p>Test case: <code>slist bought 1 e/23/04/2019</code><br>
+Expected: Error message displayed indicating that the command format is wrong. The correct format for a bought shopping command is also displayed.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Merging bought items into the grocery list (moving bought items into fridge)</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites<br>
+Some of the items in the shopping list must be bought for changes in the lists to take place.</p>
+</li>
+<li>
+<p>Test case: <code>slist mergebought</code><br>
+Expected: All bought items are added to the grocery list according to the following conditions: If a bought item does not have a corresponding grocery item (same name and expiry date) in the grocery list, a new grocery item with the bought item&#8217;s details is added to the grocery list. If a bought item has a corresponding grocery item in the grocery list, the grocery item&#8217;s amount is added instead of creating a new grocery item.<br>
+If a shopping item was fully bought, it is removed from the shopping list while merging. If the item is only partially bought, the quantity that is bought is subtracted from the shopping item&#8217;s quantity and the bought tag will be removed.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-manual-testing"><a class="link" href="#undo-redo-manual-testing">G.5. Undo Redo Manual Testing</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2453,7 +2824,7 @@ Expected: The tab for shopping list is shown</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="reminder-manual-testing"><a class="link" href="#reminder-manual-testing">G.5. Reminder Manual Testing</a></h3>
+<h3 id="reminder-manual-testing"><a class="link" href="#reminder-manual-testing">G.6. Reminder Manual Testing</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2499,7 +2870,7 @@ default reminder settings is set to 3 days.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.6. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">G.7. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2522,4 +2893,4 @@ default reminder settings is set to 3 days.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 04:44:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 06:15:01 UTC</div></div></div></body></html>
