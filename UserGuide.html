@@ -948,7 +948,8 @@ a more reliable prediction.</p>
 <div class="paragraph">
 <p>Adding new templates into your template list can help make shopping for groceries easier.
 For example, you can add an ingredients list for a favourite recipe, or add a template for
-items you buy on a regular basis.</p>
+items you buy on a regular basis. For easy viewing, templates in the template list are sorted
+automatically by alphabetical order.</p>
 </div>
 <div class="paragraph">
 <p>Add a new template into template list.<br>
@@ -1096,8 +1097,8 @@ Format: <code>tlist template add TEMPLATEINDEX n/NAME a/AMOUNT</code></p>
 <p>Amount must have both magnitude and unit.</p>
 </li>
 <li>
-<p>The system only recognises metric units. e.g. kilogram, liter. Items with the same name (check is non-case-sensitive and across templatelist, grocerylist and shoppinglist)
-can have different units as long as the unit belongs in the same unit category.</p>
+<p>The system only recognises metric units. e.g. kilogram, liter. Items with the same name (check is non-case-sensitive
+and across templatelist, grocerylist and shoppinglist) can have different units as long as the unit belongs in the same unit category.</p>
 </li>
 <li>
 <p>Only the units in the following unit categories are supported:</p>
@@ -1136,6 +1137,9 @@ can have different units as long as the unit belongs in the same unit category.<
 <div class="sect3">
 <h4 id="edit-item-name-code-tlist-template-edit-code"><a class="link" href="#edit-item-name-code-tlist-template-edit-code">3.6.2. Edit item name: <code>tlist template edit</code></a></h4>
 <div class="paragraph">
+<p>You can also edit the name and the amount of existing items.</p>
+</div>
+<div class="paragraph">
 <p>Edits a specified item in the specified template <code>TEMPLATENAME</code>.<br>
 Format: <code>tlist template edit TEMPLATEINDEX i/ITEMINDEX [n/NAME] [a/AMOUNT]</code></p>
 </div>
@@ -1156,8 +1160,8 @@ Format: <code>tlist template edit TEMPLATEINDEX i/ITEMINDEX [n/NAME] [a/AMOUNT]<
 <p>Amount must have both magnitude and unit.</p>
 </li>
 <li>
-<p>The system only recognises metric units. e.g. kilogram, liter. Items with the same name (check is non-case-sensitive and across templatelist, grocerylist and shoppinglist)
-can have different units as long as the unit belongs in the same unit category.</p>
+<p>The system only recognises metric units. e.g. kilogram, liter. Note that unit type in the amount field must belong to the same unit category
+of the item specified and pre-existing items with the same name (check for names is non case-sensitive).</p>
 </li>
 <li>
 <p>Only the units in the following unit categories are supported:</p>
@@ -1198,6 +1202,9 @@ Edits the amount of the first food item in the first template to 2 litres.</p>
 <div class="sect3">
 <h4 id="delete-food-item-code-tlist-template-delete-code"><a class="link" href="#delete-food-item-code-tlist-template-delete-code">3.6.3. Delete food item: <code>tlist template delete</code></a></h4>
 <div class="paragraph">
+<p>You can also delete items in a specific template.</p>
+</div>
+<div class="paragraph">
 <p>Deletes the specified item from the specified template.<br>
 Format: <code>tlist template delete TEMPLATEINDEX i/ITEMINDEX</code></p>
 </div>
@@ -1226,6 +1233,9 @@ Deletes the first food item in the first template.</p>
 </div>
 <div class="sect3">
 <h4 id="shows-template-code-tlist-template-list-code"><a class="link" href="#shows-template-code-tlist-template-list-code">3.6.4. Shows template: <code>tlist template list</code></a></h4>
+<div class="paragraph">
+<p>You can also view all the items in a specific template currently.</p>
+</div>
 <div class="paragraph">
 <p>Shows all entries in the specified template.<br>
 Format: <code>tlist template list TEMPLATEINDEX</code></p>
@@ -1757,4 +1767,4 @@ are expired and gives you an option to move them to your waste list.</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:08:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:13:47 UTC</div></div></div></body></html>

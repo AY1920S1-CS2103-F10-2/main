@@ -2326,15 +2326,15 @@ Expected: Template item not added into the list. Error details shown in the stat
 <p>Prerequisites: Template list must contain at least one template, which contains at least one item.</p>
 </li>
 <li>
-<p>Test case: <code>tlist template edit 1 i/1</code>
+<p>Test case: <code>tlist template delete 1 i/1</code>
 Expected: Template item deleted from the template.</p>
 </li>
 <li>
-<p>Test case: <code>tlist template edit 1 i/0</code>
+<p>Test case: <code>tlist template delete 1 i/0</code>
 Expected: Template item not deleted. Error details shown in the status message.</p>
 </li>
 <li>
-<p>Other incorrect delete template item commands to try: <code>tlist template x i/1</code> where x is greater the the template list size, <code>tlist template 1 i/x</code> where x is greater than the template size.</p>
+<p>Other incorrect delete template item commands to try: <code>tlist template delete x i/1</code> where x is greater the the template list size, <code>tlist template 1 i/x</code> where x is greater than the template size.</p>
 </li>
 </ol>
 </div>
@@ -2344,7 +2344,7 @@ Expected: Template item not deleted. Error details shown in the status message.<
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: Template must contain at least one template with at least item with name 'FullFat Milk' and amount '300ml.
+<p>Prerequisites: Template must contain at least one template with one item with name 'FullFat Milk' and amount '300ml.
 Grocerylist should have several entries of FullFat Milk with slight variations in name and amount. For e.g.:</p>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
@@ -2865,4 +2865,4 @@ default reminder settings is set to 3 days.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:08:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:13:47 UTC</div></div></div></body></html>
