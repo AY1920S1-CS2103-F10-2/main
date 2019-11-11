@@ -10,7 +10,7 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>iFridge is a desktop grocery management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has a lot of code.</p>
+<p>iFridge is a desktop grocery management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20kLoC.</p>
 </div>
 </div>
 </div>
@@ -102,6 +102,16 @@ be visible and easily understandable by the users.</p>
 <ul>
 <li>
 <p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI color scheme (Pull requests <a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/116">#116</a>)</p>
+</li>
+<li>
+<p>Wrote additional tests for existing features to increase coverage (Pull requests <a href="https://github.com/AY1920S1-CS2103-F10-2/main/pull/239">#239</a>)</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Documentation:</p>
@@ -122,9 +132,6 @@ be visible and easily understandable by the users.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Tools:</p>
 </li>
 </ul>
 </div>
@@ -311,6 +318,19 @@ be saved when the app is closed and used again when the app is relaunched.</p>
 </div>
 <div class="title">Figure 2. Interactions Inside the Logic Component for the <code>remDefault r/3</code> Command</div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The lifeline for <code>ReminderDefaultCommandParser</code> should end at the destroy marker (X)
+but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -369,6 +389,10 @@ It supports any kinds of grocery command which modifies the content of the groce
 grocery command modifies both grocery list and waste list, each grocery command will call
 <code>Model#commitGroceryList</code> and <code>Model#commitWasteList</code> so that undoing/redoing a grocery delete command will update both
 grocery list and waste list, while the other commands will only modify the grocery list.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the grocery list
+undo/redo mechanism behaves at each step.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -473,5 +497,59 @@ before performing the corresponding undo/redo</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="reminder-manual-testing"><a class="link" href="#reminder-manual-testing">Reminder Manual Testing</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set default reminder settings to determine which food are expiring "soon"</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Have at least 1 grocery item in grocery list which has not expired
+(has an expiry date of at least the current date or after) to see visible results.</p>
+</li>
+<li>
+<p>Test case: <code>glist remDefault r/10</code>
+Expected: Grocery items (in grocery list and waste list)
+with expiry dates within 10 days from current date will be color coded as orange
+while grocery items which are not expiring within 10 days will be color coded green.
+Expired grocery items will still remain red. The color coding will be retained when the app is closed and relaunched.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 06:19:03 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>Get reminder on food expiring soon</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Have at least 1 grocery item in grocery list which has not expired
+to see visible results.</p>
+</li>
+<li>
+<p>Test case: <code>glist rem r/0</code>
+Expected: Displays all grocery items expiring on the same date as today in grocery list.</p>
+</li>
+<li>
+<p>Test case: <code>glist rem</code>
+   Expected: Displays all grocery items in grocery list which are expiring within the specified number of days
+in the default reminder settings. If default reminder settings is not specified yet, number of  days in
+default reminder settings is set to 3 days.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="not-included-undo-redo-manual-testing"><a class="link" href="#not-included-undo-redo-manual-testing">Not included: Undo Redo Manual Testing.</a></h3>
+<div class="paragraph">
+<p>Please refer to Developer Guide
+(<a href="https://github.com/AY1920S1-CS2103-F10-2/main/blob/master/docs/DeveloperGuide.adoc#undo-redo-manual-testing">DG</a>)
+for more details.</p>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 06:25:18 UTC</div></div></div></body></html>
